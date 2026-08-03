@@ -61,6 +61,29 @@ npx vercel --prod
 
 Next.js는 자동 감지됩니다. 별도 빌드 설정이 필요 없습니다.
 
+> **주의 — GitHub 원격이 연결되지 않은 경우**
+> 이 저장소는 private이고, Vercel 계정에 GitHub 연동이 없으면
+> `vercel --prod` 가 **`Building…` 에서 멈춥니다.** 빌드 실패가 아니라,
+> Vercel이 원격의 커밋 정보를 GitHub에서 확인하려다 응답을 못 받고 대기하는 상태입니다.
+> (에러를 내지 않고 조용히 매달리므로 원인을 찾기 어렵습니다.)
+>
+> 해결책은 둘 중 하나입니다.
+>
+> **A. Vercel에 GitHub 연동** — 근본 해결이고, push마다 자동 배포까지 따라옵니다.
+> ```bash
+> npx vercel git connect        # Vercel 계정에 GitHub 연결이 되어 있어야 함
+> ```
+>
+> **B. git 메타데이터 없이 배포** — 연동 없이 지금 바로 올릴 때.
+> ```bash
+> npx vercel --prod --archive=tgz     # 또는 아래처럼 추적 파일만 복사해서 배포
+> ```
+> ```bash
+> T=$(mktemp -d) && git archive HEAD | tar -x -C "$T" \
+>   && mkdir -p "$T/.vercel" && cp .vercel/project.json "$T/.vercel/" \
+>   && (cd "$T" && npx vercel --prod)
+> ```
+
 ### 2. Redis 연결 (여러 기기로 플레이하려면 필수)
 
 서버리스 인스턴스마다 메모리가 따로라, Redis 없이는 **여러 기기가 같은 방에 못 들어갑니다.**
