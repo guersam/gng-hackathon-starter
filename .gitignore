@@ -4,3 +4,8 @@ node_modules
 .env*
 *.tsbuildinfo
 .DS_Store
+
+# 마켓플레이스 통합이 설치하는 에이전트 툴링 (게임 코드 아님)
+.agents/
+.claude/
+skills-lock.json
