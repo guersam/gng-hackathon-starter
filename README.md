@@ -61,28 +61,15 @@ npx vercel --prod
 
 Next.js는 자동 감지됩니다. 별도 빌드 설정이 필요 없습니다.
 
-> **주의 — GitHub 원격이 연결되지 않은 경우**
-> 이 저장소는 private이고, Vercel 계정에 GitHub 연동이 없으면
-> `vercel --prod` 가 **`Building…` 에서 멈춥니다.** 빌드 실패가 아니라,
-> Vercel이 원격의 커밋 정보를 GitHub에서 확인하려다 응답을 못 받고 대기하는 상태입니다.
-> (에러를 내지 않고 조용히 매달리므로 원인을 찾기 어렵습니다.)
->
-> 해결책은 둘 중 하나입니다.
->
-> **A. Vercel에 GitHub 연동** — 근본 해결이고, push마다 자동 배포까지 따라옵니다.
-> ```bash
-> npx vercel git connect        # Vercel 계정에 GitHub 연결이 되어 있어야 함
-> ```
->
-> **B. git 메타데이터 없이 배포** — 연동 없이 지금 바로 올릴 때.
-> 추적 파일만 `.git` 없는 임시 디렉터리로 복사해서 배포합니다 (약 30초).
-> ```bash
-> T=$(mktemp -d) && git archive HEAD | tar -x -C "$T" \
->   && mkdir -p "$T/.vercel" && cp .vercel/project.json "$T/.vercel/" \
->   && (cd "$T" && npx vercel --prod)
-> ```
-> `--archive=tgz` 로는 해결되지 않습니다 (원격 감지는 그대로 일어나 똑같이 멈춤).
-> `.git` 자체는 문제가 아닙니다 — 원격이 없는 저장소는 정상 배포됩니다.
+이 저장소는 Vercel 프로젝트에 연결되어 있어, `main` 에 push 하면 **자동으로 프로덕션 배포**됩니다.
+위 명령은 push 없이 지금 바로 올리고 싶을 때 씁니다.
+
+> **다른 계정/저장소에서 처음 세팅한다면** — private 저장소를 Vercel에 연결하려면
+> ① 계정에 GitHub **Login Connection** 추가, ② **Vercel GitHub App** 설치 후 해당 저장소 접근 허용,
+> ③ `npx vercel git connect` 순서가 필요합니다.
+> 이 연결이 없는 상태에서 GitHub 원격이 있는 디렉터리에서 배포하면,
+> Vercel이 커밋 정보를 GitHub에서 확인하려다 **에러 없이 `Building…` 에서 멈춥니다.**
+> (`--archive=tgz` 로는 해결되지 않습니다. `.git` 자체는 문제가 아니며, 원격이 없는 저장소는 정상 배포됩니다.)
 
 ### 2. Redis 연결 (여러 기기로 플레이하려면 필수)
 
