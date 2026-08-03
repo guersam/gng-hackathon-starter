@@ -75,14 +75,14 @@ Next.js는 자동 감지됩니다. 별도 빌드 설정이 필요 없습니다.
 > ```
 >
 > **B. git 메타데이터 없이 배포** — 연동 없이 지금 바로 올릴 때.
-> ```bash
-> npx vercel --prod --archive=tgz     # 또는 아래처럼 추적 파일만 복사해서 배포
-> ```
+> 추적 파일만 `.git` 없는 임시 디렉터리로 복사해서 배포합니다 (약 30초).
 > ```bash
 > T=$(mktemp -d) && git archive HEAD | tar -x -C "$T" \
 >   && mkdir -p "$T/.vercel" && cp .vercel/project.json "$T/.vercel/" \
 >   && (cd "$T" && npx vercel --prod)
 > ```
+> `--archive=tgz` 로는 해결되지 않습니다 (원격 감지는 그대로 일어나 똑같이 멈춤).
+> `.git` 자체는 문제가 아닙니다 — 원격이 없는 저장소는 정상 배포됩니다.
 
 ### 2. Redis 연결 (여러 기기로 플레이하려면 필수)
 
