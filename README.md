@@ -2,7 +2,7 @@
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/guersam/gng-hackathon-starter)
 
-> 현재 GitHub 저장소는 private이다. 위 버튼과 fork 절차는 저장소 접근 권한이 있는 사람에게만 동작한다. 공개 행사의 진행자는 사전 리허설 전에 저장소를 public으로 전환하거나 참가자를 collaborator로 초대해야 한다.
+> 이 저장소는 공개 template이다. 위 버튼으로 새 저장소를 만들거나 fork한 뒤, 참가자 각자의 Cloudflare 계정에 배포한다.
 
 서로 전혀 다른 체험형 게임을 90분 안에 플레이→수정→재플레이하기 위한 pnpm 워크스페이스다. `요일 천재`는 서버 권위 실시간 게임의 완성 예제, `Handoff Lab`은 만들기→문서→인수인계→재구성의 턴제 예제, `우리 팀의 실험`은 한 상황→선택→공개로 항상 실행되는 시작점이다.
 
@@ -12,7 +12,7 @@ games/handoff-lab         턴제 pass-and-play 예제
 games/workshop-game       수정용 최소 선택→공개 게임 팩
 packages/simulation-kit   게임 정의·manifest·검증 계약 (플랫폼 비의존)
 packages/cloudflare-host  멱등 사건 접기의 검증된 추출물 (아직 Worker 미통합)
-packages/ui-foundation    게임 의미를 모르는 CSS semantic token과 두 preset
+packages/ui-foundation    게임 의미를 모르는 CSS base·semantic token·두 preset
 src/worker                Yoil용 Cloudflare Worker·SQLite DO 어댑터
 src/main.tsx              세 예제의 얇은 경로 조립
 tests                     공통 architecture·Worker·브라우저 인수 검사

@@ -112,7 +112,7 @@ components:
 
 # Design System: 요일 천재
 
-이 문서는 starter 전체가 아니라 `games/yoil-genius` 예제 화면의 시각 계약이다. Handoff Lab과 Workshop Game은 현재 같은 기초 CSS를 사용하지만 각 게임의 고유 디자인 시스템으로 간주하지 않는다.
+이 문서는 starter 전체가 아니라 `games/yoil-genius` 예제 화면의 시각 계약이다. 세 게임은 `ui-foundation/base.css`와 semantic token만 공유하며, 구조와 화면 규칙은 각 game package의 stylesheet가 소유한다.
 
 ## Overview
 

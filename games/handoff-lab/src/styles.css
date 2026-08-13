@@ -1,0 +1,111 @@
+.handoff {
+  min-height: 100svh;
+  max-width: 760px;
+  margin: auto;
+  padding: clamp(22px, 6vw, 56px);
+}
+
+.handoff > a {
+  color: var(--ui-text);
+  font-weight: 700;
+}
+
+.handoff h1 {
+  max-width: 7ch;
+  margin: 32px 0 24px;
+  font-size: clamp(3.8rem, 16vw, 6rem);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+}
+
+.handoff .eyebrow {
+  display: none;
+}
+
+.group-switch {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  margin: 28px 0;
+}
+
+.group-switch .selected {
+  background: var(--ui-action-primary);
+  color: var(--ui-on-primary);
+}
+
+.handoff-stage {
+  border-top: 5px solid var(--ui-border-strong);
+  padding-top: 20px;
+}
+
+.handoff-stage h2 {
+  margin: 4px 0 18px;
+  font-size: clamp(1.7rem, 7vw, 2.5rem);
+  line-height: 1.2;
+}
+
+.handoff-stage textarea {
+  width: 100%;
+  min-height: 150px;
+  padding: 14px 2px;
+  border: 0;
+  border-bottom: 2px solid var(--ui-border-strong);
+  background: transparent;
+  font: inherit;
+  font-size: 1.15rem;
+  resize: vertical;
+}
+
+.handoff-stage blockquote {
+  margin: 24px 0;
+  padding: 20px 0;
+  border-block: 1px solid var(--ui-border-subtle);
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.tile-board {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  width: min(100%, 360px);
+  margin: 22px 0;
+  aspect-ratio: 1;
+  background: var(--ui-border-subtle);
+}
+
+.tile-board button {
+  min-height: 0;
+  padding: 0;
+  background: var(--ui-canvas);
+}
+
+.tile-board button[data-tile="ink"] { background: var(--ui-action-primary); }
+.tile-board button[data-tile="acid"] { background: var(--ui-action-accent); }
+.tile-board button:disabled { opacity: 1; }
+
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.compare .tile-board { width: 100%; }
+.handoff-stage > button,
+.handoff-reflect > button { width: 100%; }
+
+.handoff-reflect {
+  margin-top: 44px;
+  border-top: 1px solid var(--ui-border-subtle);
+  padding-top: 24px;
+}
+
+.handoff-reflect li {
+  margin: 14px 0;
+  line-height: 1.55;
+}
+
+@media (max-width: 480px) {
+  .compare { grid-template-columns: 1fr; }
+}

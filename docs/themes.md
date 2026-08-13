@@ -18,11 +18,11 @@
 
 ## Token 계약
 
-- 표면: `--ui-canvas`, `--ui-surface`
+- 표면: `--ui-canvas`
 - 글자: `--ui-text`, `--ui-text-muted`
 - 선: `--ui-border-subtle`, `--ui-border-strong`
 - 행동: `--ui-action-primary|secondary|accent|danger|disabled`와 각각의 `--ui-on-*`
 - 상태와 계기: `--ui-focus`, `--ui-data-track`
 - 공통 형태: `--ui-font`, `--ui-control-min-size`, `--ui-focus-width`, `--ui-focus-offset`, `--ui-radius`
 
-토큰은 “요일 의무”, “잉크 타일”, “정답” 같은 게임 의미를 표현하지 않는다. 게임 CSS가 현재 행동을 `accent`에 연결할지는 게임이 결정하고, preset은 `accent`가 어떤 색인지 결정한다. 색을 게임 CSS에 직접 쓰면 `pnpm check:theme`이 실패한다.
+토큰은 “요일 의무”, “잉크 타일”, “정답” 같은 게임 의미를 표현하지 않는다. 게임 CSS가 현재 행동을 `accent`에 연결할지는 게임이 결정하고, preset은 `accent`가 어떤 색인지 결정한다. `theme.css` 밖의 CSS나 inline style에 색을 직접 쓰면 `pnpm check:theme`이 실패한다.

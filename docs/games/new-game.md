@@ -9,6 +9,7 @@
 3. `domain.ts`의 상태·행동·사건을 한 종류씩만 바꾸고 해당 domain test를 추가한다.
 4. UI는 domain의 공개 행동만 호출한다. 저장·WebSocket·Cloudflare 코드를 game package 안으로 가져오지 않는다.
    색상은 `--ui-*` semantic token만 사용하고 새 색상 값은 `packages/ui-foundation`의 preset에 둔다.
+   구조 CSS는 game package의 `styles.css`가 소유하고 package export와 `src/main.tsx` import를 함께 추가한다.
 5. 새 package를 root `package.json` dependencies와 `src/game-registry.ts`에 추가한다.
 6. 화면이 필요하면 package export를 만들고 `src/main.tsx`에 한 경로를 연결한다.
 7. `pnpm install --lockfile-only && pnpm check`를 통과한 뒤 휴대전화에서 전원이 한 번 행동한다.

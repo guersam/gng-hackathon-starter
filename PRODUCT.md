@@ -8,7 +8,7 @@ web
 
 ## 제품의 목적
 
-이 저장소의 제품은 하나의 게임이 아니라 체험형 시뮬레이션 게임을 위한 재사용 기준선이다. `simulation-kit`의 게임 정의와 manifest, `ui-foundation`의 게임 비의존 semantic theme token은 공유하되 팀·실시간·리더보드·성찰은 개별 게임이 선택한다. `cloudflare-host`는 멱등 사건 처리의 검증된 추출물이지만 production Worker는 아직 Yoil 전용이다. 외부 갤러리·팀 배정·투표는 시스템 경계 밖이다.
+이 저장소의 제품은 하나의 게임이 아니라 체험형 시뮬레이션 게임을 위한 재사용 기준선이다. `simulation-kit`의 게임 정의와 manifest, `ui-foundation`의 게임 비의존 CSS base와 semantic theme token은 공유하되 팀·실시간·리더보드·성찰은 개별 게임이 선택한다. `cloudflare-host`는 멱등 사건 처리의 검증된 추출물이지만 production Worker는 아직 Yoil 전용이다. 외부 갤러리·팀 배정·투표는 시스템 경계 밖이다.
 
 90분 해커톤에서는 7개 팀의 4~5명이 팀당 한 명의 AI 코더를 기다리지 않고 경험·규칙·플레이·피날레 패킷을 병렬로 만든다. 모든 게임 팩은 작은 플레이 루프와 30명·두 방 피날레 실행 계획을 가져야 한다.
 

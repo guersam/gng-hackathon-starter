@@ -1,0 +1,100 @@
+.workshop-game {
+  min-height: 100svh;
+  max-width: 760px;
+  margin: auto;
+  padding: clamp(22px, 6vw, 56px);
+}
+
+.workshop-game nav {
+  display: flex;
+  gap: 20px;
+}
+
+.workshop-game nav a {
+  color: var(--ui-text);
+  font-weight: 700;
+}
+
+.workshop-game h1 {
+  max-width: 7ch;
+  margin: 32px 0 24px;
+  font-size: clamp(3.8rem, 16vw, 6rem);
+  line-height: 0.82;
+  letter-spacing: -0.04em;
+}
+
+.workshop-game label {
+  display: grid;
+  gap: 8px;
+  margin: 30px 0;
+  font-weight: 700;
+}
+
+.workshop-game input {
+  border: 0;
+  border-bottom: 2px solid var(--ui-border-strong);
+  background: transparent;
+  padding: 12px 2px;
+  font-size: 1.05rem;
+}
+
+.choice-stage {
+  border-top: 5px solid var(--ui-border-strong);
+  padding-top: 20px;
+}
+
+.choice-stage h2 {
+  margin: 4px 0 18px;
+  font-size: clamp(1.7rem, 7vw, 2.5rem);
+  line-height: 1.2;
+}
+
+.choice-people { border-top: 1px solid var(--ui-border-subtle); }
+.choice-people > div {
+  display: grid;
+  grid-template-columns: minmax(70px, 1fr) 1fr 1fr;
+  align-items: center;
+  gap: 3px;
+  border-bottom: 1px solid var(--ui-border-subtle);
+  padding: 6px 0;
+}
+
+.choice-people button {
+  padding: 10px 6px;
+  font-size: 0.9rem;
+}
+
+.reveal {
+  width: 100%;
+  margin-top: 20px;
+  background: var(--ui-action-accent);
+  color: var(--ui-on-accent);
+}
+
+.choice-result {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 16px;
+  margin-top: 22px;
+  align-items: baseline;
+}
+
+.choice-result strong { font-size: 3.5rem; }
+.change-map {
+  margin-top: 44px;
+  padding-top: 22px;
+  border-top: 1px solid var(--ui-border-subtle);
+}
+
+.change-map li {
+  margin: 12px 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 480px) {
+  .choice-people > div { grid-template-columns: 1fr 1fr; }
+  .choice-people b {
+    grid-column: 1 / -1;
+    padding-top: 8px;
+  }
+}

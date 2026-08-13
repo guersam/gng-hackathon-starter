@@ -2,7 +2,6 @@
 :root[data-theme="paper"] {
   color-scheme: light;
   --ui-canvas: #f8f7f2;
-  --ui-surface: #ffffff;
   --ui-text: #171816;
   --ui-text-muted: #65716f;
   --ui-border-subtle: #d9dcda;
@@ -29,7 +28,6 @@
 :root[data-theme="high-contrast"] {
   color-scheme: light;
   --ui-canvas: #ffffff;
-  --ui-surface: #ffffff;
   --ui-text: #000000;
   --ui-text-muted: #303030;
   --ui-border-subtle: #6b6b6b;
