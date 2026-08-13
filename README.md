@@ -60,5 +60,6 @@ HTML 보고서는 `playwright-report/`, 스크린샷·trace는 `test-results/`�
 - [90분 해커톤 운영](./docs/workshop/README.md)
 - [사전 배포 확인](./docs/workshop/prerequisite.md)
 - [새 게임 팩 추가](./docs/games/new-game.md)
+- [요일 천재 디자인 계약](./docs/games/yoil-genius-design.md)
 
 코드는 [MIT License](./LICENSE)로 제공한다. Game concept courtesy of [김창준 (June Kim)](https://x.com/cjunekim).

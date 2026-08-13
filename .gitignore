@@ -13,3 +13,6 @@ playwright-report
 .agents/
 .claude/
 skills-lock.json
+
+# 선택적 디자인 도구의 로컬 상태
+.impeccable/

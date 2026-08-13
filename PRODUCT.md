@@ -1,4 +1,3 @@
-<!-- impeccable:product-schema 1 -->
 # GNG Experiential Game Hackathon Starter 제품 명세
 
 기준일: 2026-08-13
