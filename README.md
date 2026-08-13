@@ -12,6 +12,7 @@ games/handoff-lab         턴제 pass-and-play 예제
 games/workshop-game       수정용 최소 선택→공개 게임 팩
 packages/simulation-kit   게임 정의·manifest·검증 계약 (플랫폼 비의존)
 packages/cloudflare-host  멱등 사건 접기의 검증된 추출물 (아직 Worker 미통합)
+packages/ui-foundation    게임 의미를 모르는 CSS semantic token과 두 preset
 src/worker                Yoil용 Cloudflare Worker·SQLite DO 어댑터
 src/main.tsx              세 예제의 얇은 경로 조립
 tests                     공통 architecture·Worker·브라우저 인수 검사
@@ -45,6 +46,8 @@ pnpm check
 pnpm test:browser
 ```
 
+테마는 [`index.html`](./index.html)의 `data-theme="paper"`를 `high-contrast`로 바꾸면 개발 서버에서 즉시 갱신된다. 새 preset 작성법과 중립 token 계약은 [테마 가이드](./docs/themes.md)에 있다.
+
 로컬 릴리스 증거는 다음 관문으로 나눈다.
 
 ```bash
@@ -61,5 +64,6 @@ HTML 보고서는 `playwright-report/`, 스크린샷·trace는 `test-results/`�
 - [사전 배포 확인](./docs/workshop/prerequisite.md)
 - [새 게임 팩 추가](./docs/games/new-game.md)
 - [요일 천재 디자인 계약](./docs/games/yoil-genius-design.md)
+- [공통 테마 바꾸기](./docs/themes.md)
 
 코드는 [MIT License](./LICENSE)로 제공한다. Game concept courtesy of [김창준 (June Kim)](https://x.com/cjunekim).

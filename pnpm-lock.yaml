@@ -26,6 +26,9 @@ importers:
       '@experiential/simulation-kit':
         specifier: workspace:*
         version: link:packages/simulation-kit
+      '@experiential/ui-foundation':
+        specifier: workspace:*
+        version: link:packages/ui-foundation
       '@fontsource/gothic-a1':
         specifier: 5.3.0
         version: 5.3.0
@@ -101,6 +104,8 @@ importers:
         version: link:../simulation-kit
 
   packages/simulation-kit: {}
+
+  packages/ui-foundation: {}
 
 packages:
 

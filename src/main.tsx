@@ -6,6 +6,7 @@ import "@fontsource/gothic-a1/korean-900.css";
 import "@fontsource/gothic-a1/latin-400.css";
 import "@fontsource/gothic-a1/latin-700.css";
 import "@fontsource/gothic-a1/latin-900.css";
+import "@experiential/ui-foundation/theme.css";
 import App from "@experiential/game-yoil-genius/ui";
 import { HandoffLab } from "@experiential/game-handoff-lab/ui";
 import { WorkshopGame } from "@experiential/game-workshop/ui";

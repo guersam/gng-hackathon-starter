@@ -1,0 +1,7 @@
+{
+  "name": "@experiential/ui-foundation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "exports": { "./theme.css": "./src/theme.css" }
+}

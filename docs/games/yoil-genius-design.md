@@ -2,18 +2,18 @@
 name: "요일 천재"
 description: "종이와 먹, 거대한 요일 글자로 9초의 공동 리듬을 운용하는 밝은 게임 인터페이스"
 colors:
-  ink: "#171816"
-  paper: "#f8f7f2"
-  silver: "#b9c1c0"
-  rain: "#65716f"
-  acid: "#d9ff43"
-  danger: "#a82824"
-  disabled-surface: "#d1d3ce"
-  disabled-ink: "#737873"
-  focus-blue: "#2568d8"
-  hairline: "#d9dcda"
-  trace-surface: "#dde0de"
-  white: "#ffffff"
+  canvas: "var(--ui-canvas)"
+  text: "var(--ui-text)"
+  text-muted: "var(--ui-text-muted)"
+  border-subtle: "var(--ui-border-subtle)"
+  action-primary: "var(--ui-action-primary)"
+  on-primary: "var(--ui-on-primary)"
+  action-secondary: "var(--ui-action-secondary)"
+  on-secondary: "var(--ui-on-secondary)"
+  action-accent: "var(--ui-action-accent)"
+  on-accent: "var(--ui-on-accent)"
+  action-danger: "var(--ui-action-danger)"
+  on-danger: "var(--ui-on-danger)"
 typography:
   micro:
     fontFamily: '"Gothic A1", sans-serif'
@@ -89,24 +89,24 @@ spacing:
   page-mobile: "16px 18px 44px"
 components:
   button-primary:
-    backgroundColor: "{colors.ink}"
-    textColor: "{colors.white}"
+    backgroundColor: "{colors.action-primary}"
+    textColor: "{colors.on-primary}"
     padding: "{spacing.control}"
   button-duty:
-    backgroundColor: "{colors.acid}"
-    textColor: "{colors.ink}"
+    backgroundColor: "{colors.action-accent}"
+    textColor: "{colors.on-accent}"
     padding: "{spacing.control}"
   button-secondary:
-    backgroundColor: "{colors.silver}"
-    textColor: "{colors.ink}"
+    backgroundColor: "{colors.action-secondary}"
+    textColor: "{colors.on-secondary}"
     padding: "{spacing.control}"
   button-danger:
-    backgroundColor: "{colors.danger}"
-    textColor: "{colors.white}"
+    backgroundColor: "{colors.action-danger}"
+    textColor: "{colors.on-danger}"
     padding: "{spacing.control}"
   input-underline:
     backgroundColor: "transparent"
-    textColor: "{colors.ink}"
+    textColor: "{colors.text}"
     padding: "12px 2px"
 ---
 

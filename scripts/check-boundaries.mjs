@@ -18,6 +18,12 @@ for (const file of await sourceFiles("packages/simulation-kit/src")) {
     violations.push(`${file}: simulation-kit이 게임 또는 플랫폼 구현을 참조합니다.`);
   }
 }
+for (const file of await sourceFiles("packages/ui-foundation/src")) {
+  const source = await readFile(file, "utf8");
+  if (/src\/worker|games\/|@experiential\/(?:game-|cloudflare-host|simulation-kit)/.test(source)) {
+    violations.push(`${file}: ui-foundation이 게임, 도메인 또는 플랫폼 구현을 참조합니다.`);
+  }
+}
 for (const file of await sourceFiles("games")) {
   const source = await readFile(file, "utf8");
   if (/src\/worker|@experiential\/cloudflare-host/.test(source)) {
