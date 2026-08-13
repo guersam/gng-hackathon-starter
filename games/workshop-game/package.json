@@ -1,0 +1,7 @@
+{
+  "name": "@experiential/game-workshop",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "dependencies": { "@experiential/simulation-kit": "workspace:*" }
+}
