@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createInitialState, decide, foldEvents, projectLeaderboard, reconcileDeadlines, replay, SessionConfig, WEEKDAYS } from "../../src/domain";
+import { createInitialState, decide, foldEvents, projectLeaderboard, reconcileDeadlines, replay, type SessionConfig, WEEKDAYS } from "@experiential/game-yoil-genius/domain";
 
 const config: SessionConfig = { kind: "team_simulation", runMode: "team", timezone: "Asia/Seoul", durationSeconds: 60, countdownSeconds: 5, referenceDate: { year: 2026, month: 8, day: 13 }, teams: [{ id: "a", label: "A", capacity: 3 }, { id: "b", label: "B", capacity: 4 }] };
 function running() {

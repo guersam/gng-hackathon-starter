@@ -1,6 +1,6 @@
 const base = process.argv[2];
 if (!base) {
-  console.error("사용법: npm run load -- https://배포주소");
+  console.error("사용법: pnpm load -- https://배포주소");
   process.exit(2);
 }
 const teams = Array.from({ length: 6 }, (_, i) => ({

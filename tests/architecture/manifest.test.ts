@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { assertManifest } from "../../packages/simulation-kit/src/index";
+import { assertManifest } from "@experiential/simulation-kit";
 import { GAME_MANIFESTS } from "../../src/game-registry";
 
 describe("game manifests", () => {

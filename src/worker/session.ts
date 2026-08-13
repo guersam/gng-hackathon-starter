@@ -3,7 +3,7 @@ import { hashCapability, newCapability } from "./crypto";
 import type { CapabilityRecord, ClientMessage, Env, ServerMessage, SessionCreateConfig, SessionSnapshot, SocketAttachment, StoredEvent } from "./types";
 import { cleanDisplayName } from "./validation";
 import { applyGameCommand, commandForActor, foldGame, initialGame, joinGame, nextDeadline, reconcileGame } from "./game-adapter";
-import type { GameEvent, GameState } from "../domain/types";
+import type { GameEvent, GameState } from "@experiential/game-yoil-genius/domain";
 
 const JSON_HEADERS = { "content-type": "application/json; charset=utf-8", "cache-control": "no-store" };
 const RETENTION_MS = 24 * 60 * 60 * 1000;

@@ -1,7 +1,7 @@
-import { assertManifest, type GameManifest } from "../packages/simulation-kit/src/index";
-import { yoilManifest } from "../games/yoil-genius/src/manifest";
-import { workshopManifest } from "../games/workshop-game/src/manifest";
-import { handoffManifest } from "../games/handoff-lab/src/domain";
+import { assertManifest, type GameManifest } from "@experiential/simulation-kit";
+import { yoilManifest } from "@experiential/game-yoil-genius";
+import { workshopManifest } from "@experiential/game-workshop/manifest";
+import { handoffManifest } from "@experiential/game-handoff-lab";
 
 export const GAME_MANIFESTS = [yoilManifest, handoffManifest, workshopManifest] satisfies GameManifest[];
 for (const manifest of GAME_MANIFESTS) assertManifest(manifest);

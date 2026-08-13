@@ -3,5 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "exports": { ".": "./src/domain.ts", "./ui": "./src/HandoffLab.tsx" },
   "dependencies": { "@experiential/simulation-kit": "workspace:*", "react": "19.2.8" }
 }

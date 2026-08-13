@@ -21,7 +21,7 @@ Narrow Engine / Broad Orchestrator로 자른다.
 
 - `packages/simulation-kit`: 플랫폼을 모르는 상태·행동·사건·투영·수명 계약과 자기 안내 manifest.
 - `packages/cloudflare-host`: 명령 멱등성, 사건 추가와 접기 같은 게임 비의존 유틸리티.
-- `games/*`: 규칙, 문구, 화면, 테스트와 30명 피날레 계획. 호스트 구현을 import하지 않는다.
+- `games/*`: 규칙, 문구, 화면, 단위 테스트와 30명 피날레 계획. 호스트 구현을 import하지 않는다.
 - `src/worker`: Cloudflare의 HTTP/WebSocket/SQLite Durable Object 어댑터. 현재 요일 천재의 완전한 운영 구현이며 범용 호스트 전환의 증거 기반 출발점이다.
 
 `pnpm check:boundaries`가 방향을 검사한다. 현재 Handoff Lab과 Workshop Game은 같은 도메인 계약을 실행하지만 로컬 pass-and-play 화면이다. “모든 팩이 이미 네트워크 호스팅된다”고 주장하지 않는다. 다음 재절단은 두 번째 게임이 실제 원격 동기화를 요구할 때만 한다.

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createWorkshopState, decideWorkshop, foldWorkshop } from "../../games/workshop-game/src/domain";
+import { createWorkshopState, decideWorkshop, foldWorkshop } from "@experiential/game-workshop";
 
 describe("workshop game pack", () => {
   it("keeps choices private until an explicit reveal", () => {

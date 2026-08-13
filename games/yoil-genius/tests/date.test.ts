@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { addDays, fromOrdinal, isLeapYear, rangeBounds, toOrdinal, weekdayOf } from "../../src/domain";
+import { addDays, fromOrdinal, isLeapYear, rangeBounds, toOrdinal, weekdayOf } from "@experiential/game-yoil-genius/domain";
 
 describe("civil Gregorian calendar", () => {
   it("handles leap and century rules", () => { expect(isLeapYear(2000)).toBe(true); expect(isLeapYear(1900)).toBe(false); expect(isLeapYear(2024)).toBe(true); });

@@ -6,10 +6,10 @@ import "@fontsource/gothic-a1/korean-900.css";
 import "@fontsource/gothic-a1/latin-400.css";
 import "@fontsource/gothic-a1/latin-700.css";
 import "@fontsource/gothic-a1/latin-900.css";
-import App from "./ui/App";
-import { HandoffLab } from "../games/handoff-lab/src/HandoffLab";
-import { WorkshopGame } from "../games/workshop-game/src/WorkshopGame";
-import "./ui/styles.css";
+import App from "@experiential/game-yoil-genius/ui";
+import { HandoffLab } from "@experiential/game-handoff-lab/ui";
+import { WorkshopGame } from "@experiential/game-workshop/ui";
+import "@experiential/game-yoil-genius/styles.css";
 
 const surface = location.pathname === "/handoff" ? <HandoffLab /> : location.pathname === "/workshop" ? <WorkshopGame /> : <App />;
 createRoot(document.getElementById("root")!).render(<StrictMode>{surface}</StrictMode>);

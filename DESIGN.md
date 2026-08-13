@@ -112,6 +112,8 @@ components:
 
 # Design System: 요일 천재
 
+이 문서는 starter 전체가 아니라 `games/yoil-genius` 예제 화면의 시각 계약이다. Handoff Lab과 Workshop Game은 현재 같은 기초 CSS를 사용하지만 각 게임의 고유 디자인 시스템으로 간주하지 않는다.
+
 ## Overview
 
 **Creative North Star: "움직이는 요일 활자보"**

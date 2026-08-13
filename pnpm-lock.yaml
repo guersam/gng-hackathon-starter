@@ -11,6 +11,21 @@ importers:
       '@cloudflare/vite-plugin':
         specifier: 1.51.3
         version: 1.51.3(vite@8.2.1(esbuild@0.28.1))(wrangler@4.121.0(@cloudflare/workers-types@5.20260812.1))
+      '@experiential/cloudflare-host':
+        specifier: workspace:*
+        version: link:packages/cloudflare-host
+      '@experiential/game-handoff-lab':
+        specifier: workspace:*
+        version: link:games/handoff-lab
+      '@experiential/game-workshop':
+        specifier: workspace:*
+        version: link:games/workshop-game
+      '@experiential/game-yoil-genius':
+        specifier: workspace:*
+        version: link:games/yoil-genius
+      '@experiential/simulation-kit':
+        specifier: workspace:*
+        version: link:packages/simulation-kit
       '@fontsource/gothic-a1':
         specifier: 5.3.0
         version: 5.3.0
@@ -66,12 +81,18 @@ importers:
       '@experiential/simulation-kit':
         specifier: workspace:*
         version: link:../../packages/simulation-kit
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
 
   games/yoil-genius:
     dependencies:
       '@experiential/simulation-kit':
         specifier: workspace:*
         version: link:../../packages/simulation-kit
+      react:
+        specifier: 19.2.8
+        version: 19.2.8
 
   packages/cloudflare-host:
     dependencies:

@@ -1,7 +1,5 @@
-import { decide, reconcileDeadlines } from "../domain/engine";
-import { createInitialState, foldEvents } from "../domain/state";
-import { RANGE_IDS, TIME_LIMITS, WEEKDAYS } from "../domain/types";
-import type { CivilDate, GameCommand, GameEvent, GameState, RangeId, SessionConfig, TimeLimit, Weekday } from "../domain/types";
+import { decide, reconcileDeadlines, createInitialState, foldEvents, RANGE_IDS, TIME_LIMITS, WEEKDAYS } from "@experiential/game-yoil-genius/domain";
+import type { CivilDate, GameCommand, GameEvent, GameState, RangeId, SessionConfig, TimeLimit, Weekday } from "@experiential/game-yoil-genius/domain";
 import type { SessionCreateConfig, SocketAttachment } from "./types";
 
 export function domainConfig(input: SessionCreateConfig, now: number): SessionConfig {

@@ -66,7 +66,7 @@ export interface SessionSnapshot {
   }>;
   readyTeamIds: string[];
   revision: number;
-  game: import("../domain/types").GameState;
+  game: import("@experiential/game-yoil-genius/domain").GameState;
 }
 
 export type ClientMessage =

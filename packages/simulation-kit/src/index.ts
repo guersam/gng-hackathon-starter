@@ -16,7 +16,7 @@ export interface GameManifest {
   participantRange: { min: number; max: number };
   expectedMinutes: number;
   selfGuidedInstructions: string[];
-  finalePlan?: FinalePlan;
+  finalePlan: FinalePlan;
 }
 
 export interface GameContext { now: number; sessionId: string }
@@ -45,5 +45,5 @@ export function assertManifest(manifest: GameManifest): void {
   if (!Number.isInteger(manifest.schemaVersion) || manifest.schemaVersion < 1) throw new Error("Game schema version must be positive");
   if (manifest.participantRange.min < 1 || manifest.participantRange.max > 30 || manifest.participantRange.min > manifest.participantRange.max) throw new Error("Participant range must be within 1–30");
   if (!manifest.selfGuidedInstructions.length) throw new Error("Self-guided instructions are required");
-  if (manifest.finalePlan && (manifest.finalePlan.participantCount !== 30 || manifest.finalePlan.roomCount !== 2 || !manifest.finalePlan.contingency)) throw new Error("Finale plan must cover 30 participants, two rooms, and a contingency");
+  if (manifest.finalePlan.participantCount !== 30 || manifest.finalePlan.roomCount !== 2 || !manifest.finalePlan.contingency) throw new Error("Finale plan must cover 30 participants, two rooms, and a contingency");
 }

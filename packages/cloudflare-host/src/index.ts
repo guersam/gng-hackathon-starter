@@ -1,4 +1,4 @@
-import type { GameDecision, ServerGameDefinition } from "../../simulation-kit/src/index";
+import type { GameDecision, ServerGameDefinition } from "@experiential/simulation-kit";
 
 export interface StoredGame<Event, State> { version: number; events: Event[]; state: State; commandIds: string[] }
 

@@ -2,14 +2,19 @@
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/guersam/gng-hackathon-starter)
 
+> 현재 GitHub 저장소는 private이다. 위 버튼과 fork 절차는 저장소 접근 권한이 있는 사람에게만 동작한다. 공개 행사의 진행자는 사전 리허설 전에 저장소를 public으로 전환하거나 참가자를 collaborator로 초대해야 한다.
+
 서로 전혀 다른 체험형 게임을 90분 안에 플레이→수정→재플레이하기 위한 pnpm 워크스페이스다. `요일 천재`는 서버 권위 실시간 게임의 완성 예제, `Handoff Lab`은 만들기→문서→인수인계→재구성의 턴제 예제, `우리 팀의 실험`은 한 상황→선택→공개로 항상 실행되는 시작점이다.
 
 ```text
+games/yoil-genius         완성형 실시간 예제의 domain·UI·manifest
+games/handoff-lab         턴제 pass-and-play 예제
+games/workshop-game       수정용 최소 선택→공개 게임 팩
 packages/simulation-kit   게임 정의·manifest·검증 계약 (플랫폼 비의존)
-packages/cloudflare-host  사건 접기·멱등 명령의 호스트 유틸리티
-games/*                   서로 다른 게임의 규칙·화면·테스트
-src/worker                Cloudflare Worker + SQLite Durable Object 어댑터
-src/ui                    요일 천재 운영 화면
+packages/cloudflare-host  멱등 사건 접기의 검증된 추출물 (아직 Worker 미통합)
+src/worker                Yoil용 Cloudflare Worker·SQLite DO 어댑터
+src/main.tsx              세 예제의 얇은 경로 조립
+tests                     공통 architecture·Worker·브라우저 인수 검사
 ```
 
 `pnpm check:boundaries`는 게임 팩이 Worker 구현을 참조하거나 범용 커널이 특정 게임을 참조하는 일을 막는다. 외부 갤러리, 팀 배정과 투표는 이 런타임의 책임이 아니다.
@@ -19,6 +24,7 @@ src/ui                    요일 천재 운영 화면
 Node.js 22+, pnpm 11+, Git, 무료 Cloudflare 계정이 필요하다. Corepack을 쓸 수 있으면 `corepack enable`로 저장소가 고정한 pnpm 버전을 사용한다.
 
 ```bash
+# 먼저 GitHub에서 fork한 뒤 본인 저장소를 복제한다.
 git clone https://github.com/<내-계정>/gng-hackathon-starter.git
 cd gng-hackathon-starter
 pnpm install --frozen-lockfile
@@ -53,5 +59,6 @@ HTML 보고서는 `playwright-report/`, 스크린샷·trace는 `test-results/`�
 - [CLEAR 아키텍처 기준선](./docs/architecture/README.md)
 - [90분 해커톤 운영](./docs/workshop/README.md)
 - [사전 배포 확인](./docs/workshop/prerequisite.md)
+- [새 게임 팩 추가](./docs/games/new-game.md)
 
 코드는 [MIT License](./LICENSE)로 제공한다. Game concept courtesy of [김창준 (June Kim)](https://x.com/cjunekim).

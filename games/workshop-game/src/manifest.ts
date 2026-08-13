@@ -1,4 +1,4 @@
-import type { GameManifest } from "../../../packages/simulation-kit/src/index";
+import type { GameManifest } from "@experiential/simulation-kit";
 
 export const workshopManifest = {
   id: "workshop-game",

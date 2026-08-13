@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { createHandoffState, decideHandoff, foldHandoff, projectHandoff } from "../../games/handoff-lab/src/domain";
+import { createHandoffState, decideHandoff, foldHandoff, projectHandoff } from "@experiential/game-handoff-lab";
 
 describe("Handoff Lab", () => {
   it("moves through build, documentation, reconstruction and comparison", () => {

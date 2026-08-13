@@ -1,4 +1,4 @@
-import type { GameManifest, ServerGameDefinition } from "../../../packages/simulation-kit/src/index";
+import type { GameManifest, ServerGameDefinition } from "@experiential/simulation-kit";
 import { workshopManifest } from "./manifest";
 
 export type Choice = "left" | "right";

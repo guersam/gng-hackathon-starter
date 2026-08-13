@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { applyGameCommand } from "../../packages/cloudflare-host/src/index";
-import { workshopDefinition } from "../../games/workshop-game/src/domain";
+import { applyGameCommand } from "@experiential/cloudflare-host";
+import { workshopDefinition } from "@experiential/game-workshop";
 
 describe("generic game host", () => {
   it("folds a game definition once for an idempotency key", () => {

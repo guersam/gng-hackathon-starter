@@ -1,4 +1,4 @@
-import type { GameManifest, ServerGameDefinition } from "../../../packages/simulation-kit/src/index";
+import type { GameManifest, ServerGameDefinition } from "@experiential/simulation-kit";
 
 export type Tile = "empty" | "ink" | "acid";
 export type GroupId = "a" | "b";
