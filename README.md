@@ -2,7 +2,7 @@
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/guersam/gng-hackathon-starter)
 
-> 게임을 먼저 실행해 보려면 위 Deploy 버튼을 사용한다. 해커톤에서 코드를 수정할 참가자는 이 공개 template으로 새 저장소를 만들거나 fork한 뒤, 아래 Wrangler 절차로 자기 Cloudflare 계정에 배포한다.
+> 게임을 먼저 실행해 보려면 위 Deploy 버튼을 사용한다. 코드를 수정할 참가자는 GitHub의 **Use this template**으로 자기 저장소를 만든 뒤, 아래 Wrangler 절차로 자기 Cloudflare 계정에 배포한다.
 
 서로 전혀 다른 체험형 게임을 90분 안에 플레이→수정→재플레이하기 위한 pnpm 워크스페이스다. `요일 천재`는 서버 권위 실시간 게임의 완성 예제, `Handoff Lab`은 만들기→문서→인수인계→재구성의 턴제 예제, `우리 팀의 실험`은 한 상황→선택→공개로 항상 실행되는 시작점이다.
 
@@ -16,14 +16,22 @@ tests/                    도메인·Worker·브라우저 검사
 
 처음 수정할 때는 `/workshop`을 플레이한 뒤 `games/workshop-game`에서 상황과 두 선택을 바꾼다. 파일을 복사해 새 게임으로 등록하는 순서는 [새 게임 팩 추가](./docs/games/new-game.md)를 따른다.
 
+## 내 저장소 만들기
+
+1. GitHub 저장소 상단의 **Use this template → Create a new repository**를 누른다.
+2. 저장소 이름과 공개 범위를 선택해 생성한다.
+3. 새로 만든 자기 저장소를 clone한다.
+
+starter 자체에 변경을 제안하려는 경우에만 fork한다.
+
 ## 사전 준비와 배포
 
 Node.js 22+, pnpm 11+, Git, 무료 Cloudflare 계정이 필요하다. Corepack을 쓸 수 있으면 `corepack enable`로 저장소가 고정한 pnpm 버전을 사용한다.
 
 ```bash
-# GitHub template으로 만든 저장소 또는 fork를 복제한다.
-git clone https://github.com/<내-계정>/gng-hackathon-starter.git
-cd gng-hackathon-starter
+# 위에서 만든 자기 저장소를 복제한다.
+git clone https://github.com/<내-계정>/<내-저장소>.git
+cd <내-저장소>
 pnpm install --frozen-lockfile
 pnpm check
 pnpm exec wrangler login
