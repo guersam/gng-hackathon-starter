@@ -169,17 +169,15 @@ function Entry({
     );
   return (
     <main className="entry">
-      <div className="brand">
-        요일
-        <br />
-        천재
-      </div>
+      <h1 className="brand brand-title">
+        <span>요일</span>
+        <span>천재</span>
+      </h1>
       <p className="lead">
         9초의 공동 리듬 사이로
         <br />
         날짜의 요일을 맞혀 보세요.
       </p>
-      {!path && <nav className="game-links" aria-label="다른 기준 게임"><a href="/handoff">Handoff Lab 플레이</a><a href="/workshop">빈 게임 팩 열기</a></nav>}
       {path ? (
         <>
           <label>

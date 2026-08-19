@@ -1,6 +1,4 @@
 .entry-choice { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin: 22px 0; }
-.game-links { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; margin: 24px 0; background: var(--ui-border-subtle); }
-.game-links a { min-height: var(--ui-control-min-size); padding: 14px; background: var(--ui-canvas); color: var(--ui-text); font-weight: 700; }
 .entry-choice button { min-height: 56px; }
 .entry-choice .selected { background: var(--ui-action-primary); color: var(--ui-on-primary); }
 .practice-start { margin-top: 22px; }
@@ -30,6 +28,8 @@
 .brand.small {
   font-size: 6rem;
 }
+.brand-title { line-height: 0.96; }
+.brand-title span { display: block; }
 .brand i {
   font-size: 2rem;
   color: var(--ui-text-muted);

@@ -5,6 +5,18 @@ const themes = {
   "high-contrast": { canvas: "#ffffff", text: "#000000" },
 } as const;
 
+test("yoil entry keeps its title legible and gameplay-only", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.getByRole("navigation", { name: "다른 기준 게임" })).toHaveCount(0);
+  const title = page.locator(".brand-title");
+  await expect(title.locator("span")).toHaveCount(2);
+  const ratio = await title.evaluate((element) => {
+    const style = getComputedStyle(element);
+    return Number.parseFloat(style.lineHeight) / Number.parseFloat(style.fontSize);
+  });
+  expect(ratio).toBeGreaterThanOrEqual(0.95);
+});
+
 for (const [theme, expected] of Object.entries(themes)) {
   for (const route of ["/", "/handoff", "/workshop"] as const) {
     for (const viewport of [{ name: "mobile", width: 320, height: 700 }, { name: "desktop", width: 1280, height: 900 }]) {
