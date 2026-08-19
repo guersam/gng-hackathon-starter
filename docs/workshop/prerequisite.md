@@ -42,4 +42,4 @@ Node.js는 22 이상을 사용한다. `wrangler whoami`가 다른 계정을 가�
 
 ### 무료 제공량 또는 계정 제한 문제
 
-[공식 요금 문서](https://developers.cloudflare.com/workers/platform/pricing/)와 [Durable Objects 제한](https://developers.cloudflare.com/durable-objects/platform/limits/)을 현재 계정 대시보드와 함께 확인한다. 결제를 즉석에서 활성화하지 말고 진행자에게 알려 로컬 진행 또는 검증된 대체 배포를 선택한다.
+[공식 요금 문서](https://developers.cloudflare.com/workers/platform/pricing/)와 [Durable Objects 제한](https://developers.cloudflare.com/durable-objects/platform/limits/)을 현재 계정 대시보드와 함께 확인한다. 결제를 즉석에서 활성화하지 말고 로컬 실행 또는 이미 검증한 다른 배포를 사용한다.

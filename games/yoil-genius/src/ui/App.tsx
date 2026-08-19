@@ -142,7 +142,7 @@ function Entry({
       <main className="entry">
         <h1>팀 참가 링크가 준비됐습니다</h1>
         <p className="lead">
-          팀마다 맞는 링크를 보내 주세요. 지금 쓰는 기기에서는 진행 화면을 엽니다.
+          팀마다 맞는 링크를 보내 주세요. 지금 쓰는 기기에서는 세션 관리 화면을 엽니다.
         </p>
         <div className="links">
           {created.teams.map((t) => (
@@ -163,7 +163,7 @@ function Entry({
             })
           }
         >
-          진행자 화면 열기
+          세션 관리 화면 열기
         </button>
       </main>
     );
@@ -388,7 +388,7 @@ function Play({
       {connection !== "authenticated" && <p className="connection" role="status">{connection === "failed" ? "실시간 연결이 끊겼습니다. 인터넷 연결을 확인해 주세요. 연결되면 게임이 자동으로 이어집니다." : "게임에 다시 연결하고 있습니다."}</p>}
       {team.phase === "paused" && (
         <p className="paused" role="status">
-          진행자가 게임을 잠시 멈췄습니다
+          게임이 잠시 멈췄습니다
         </p>
       )}
       <header>
@@ -547,7 +547,7 @@ function Host({
   };
   return (
     <main className="host">
-      <h1>진행자 화면</h1>
+      <h1>세션 관리</h1>
       <Scoreboard game={game} />
       <div className="host-actions">
         <button onClick={() => socket?.command({ type: "host.pause" })}>

@@ -39,7 +39,7 @@ pnpm deploy
 pnpm smoke -- https://내-배포-주소.workers.dev
 ```
 
-배포 뒤 `/`는 두 기준 게임의 선택 화면이다. `/yoil`에서 요일 천재를 혼자 연습하거나 팀 세션을 만들고, `/handoff`에서 Handoff Lab을 바로 플레이한다. 행사 전 진행자는 `pnpm load -- <주소>`로 30명 리허설을 별도로 실행한다.
+배포 뒤 `/`는 두 기준 게임의 선택 화면이다. `/yoil`에서 요일 천재를 혼자 연습하거나 팀 세션을 만들고, `/handoff`에서 Handoff Lab을 바로 플레이한다. 30명 연결은 필요할 때 `pnpm load -- <주소>`로 확인한다.
 
 사전 준비는 `pnpm check` → `pnpm deploy` → `pnpm smoke -- <배포 주소>`와 혼자 연습 완료까지다. 계정·권한·실시간 연결 문제는 [사전 배포 확인과 문제 해결](./docs/workshop/prerequisite.md)에서 확인한다.
 
@@ -57,14 +57,8 @@ pnpm test:browser
 
 ## 다음 단계
 
-참가자:
-
 - [기준 게임을 개조하거나 새 게임으로 추가하기](./docs/games/modify-a-game.md)
 - [공통 테마 바꾸기](./docs/themes.md)
-
-진행자:
-
-- [90분 해커톤 운영](./docs/workshop/README.md)
 - [사전 배포 확인과 문제 해결](./docs/workshop/prerequisite.md)
 
 설계 근거가 필요할 때만 읽는 참고자료:

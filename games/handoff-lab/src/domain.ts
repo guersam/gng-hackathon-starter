@@ -25,7 +25,7 @@ export const handoffManifest = {
   participantRange: { min: 4, max: 10 },
   expectedMinutes: 8,
   selfGuidedInstructions: ["두 그룹이 서로 보지 않고 모양을 만듭니다.", "만든 모양을 120자 안으로 설명합니다.", "상대 그룹의 설명만 보고 같은 모양을 만듭니다.", "원본과 다시 만든 모양을 나란히 보고 차이를 이야기합니다."],
-  finalePlan: { participantCount: 30, roomCount: 2, topology: "두 방에서 세 조씩, 조마다 기기 한 대를 번갈아 사용", participantRoles: ["방마다 진행자 1명", "조마다 참가자 4~5명"], setupInstructions: ["각 조를 A와 B 두 그룹으로 나눈다.", "조마다 한 기기에서 /handoff를 연다.", "비교가 끝나면 눈에 띈 차이 하나를 같은 방에 공유한다."], contingency: "기기가 부족하면 종이로 모양을 만들고 한 기기에서 설명을 번갈아 쓴다." },
+  finalePlan: { participantCount: 30, roomCount: 2, topology: "두 방에서 세 조씩, 조마다 기기 한 대를 번갈아 사용", participantRoles: ["조마다 참가자 4~5명"], setupInstructions: ["각 조를 A와 B 두 그룹으로 나눈다.", "조마다 한 기기에서 /handoff를 연다.", "비교가 끝나면 눈에 띈 차이 하나를 같은 방에 공유한다."], contingency: "기기가 부족하면 종이로 모양을 만들고 한 기기에서 설명을 번갈아 쓴다." },
 } satisfies GameManifest;
 
 export function createHandoffState(): HandoffState {
