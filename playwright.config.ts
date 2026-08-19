@@ -1,6 +1,6 @@
+import { defineConfig } from "@playwright/test";
 
 const deployedBaseURL = process.env.PLAYWRIGHT_BASE_URL;
-import { defineConfig } from "@playwright/test";
 
 export default defineConfig({
   testDir: "./tests/browser",
