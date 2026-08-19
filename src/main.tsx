@@ -10,10 +10,10 @@ import "@experiential/ui-foundation/theme.css";
 import "@experiential/ui-foundation/base.css";
 import App from "@experiential/game-yoil-genius/ui";
 import { HandoffLab } from "@experiential/game-handoff-lab/ui";
-import { WorkshopGame } from "@experiential/game-workshop/ui";
+import { StarterHome } from "./StarterHome";
 import "@experiential/game-yoil-genius/styles.css";
 import "@experiential/game-handoff-lab/styles.css";
-import "@experiential/game-workshop/styles.css";
+import "./starter.css";
 
-const surface = location.pathname === "/handoff" ? <HandoffLab /> : location.pathname === "/workshop" ? <WorkshopGame /> : <App />;
+const surface = location.pathname === "/" ? <StarterHome /> : location.pathname === "/handoff" ? <HandoffLab /> : <App />;
 createRoot(document.getElementById("root")!).render(<StrictMode>{surface}</StrictMode>);

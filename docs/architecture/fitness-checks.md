@@ -17,4 +17,4 @@
 
 `pnpm check`가 상시 관문, `pnpm check:release`가 브라우저 포함 릴리스 관문이며 `pnpm smoke -- <배포 주소>`와 `pnpm load -- <배포 주소>`가 배포 관문이다. `pnpm check:boundaries`는 범용 커널→게임/플랫폼 및 게임→호스트 역의존을 막는다. 실제 스크립트가 이 문서와 달라지면 문서를 완화하지 말고 둘 중 하나를 즉시 일치시킨다.
 
-로컬에서는 `pnpm test:browser:visual`이 세 게임 경로와 두 테마를 320px·1280px로 렌더링하고, `pnpm test:browser:scale`이 30개 독립 브라우저 컨텍스트의 WebSocket 인증을 확인하며, `pnpm test:browser:full`이 120초 서버 종료와 사건 증거를 확인한다. 이것은 배포 제공량·지연·두 방 Wi-Fi를 닫는 증거가 아니다.
+로컬에서는 `pnpm test:browser:visual`이 선택 화면·두 게임 경로와 두 테마를 320px·1280px로 렌더링하고, `pnpm test:browser:scale`이 30개 독립 브라우저 컨텍스트의 WebSocket 인증을 확인하며, `pnpm test:browser:full`이 120초 서버 종료와 사건 증거를 확인한다. 이것은 배포 제공량·지연·두 방 Wi-Fi를 닫는 증거가 아니다.

@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@experiential/game-handoff-lab": "workspace:*",
-    "@experiential/game-workshop": "workspace:*",
     "@experiential/game-yoil-genius": "workspace:*",
     "@experiential/simulation-kit": "workspace:*",
     "@experiential/ui-foundation": "workspace:*",

@@ -1,6 +1,6 @@
 # 테마 바꾸기
 
-모든 예제는 `@experiential/ui-foundation`의 중립 semantic token을 사용한다. React provider나 게임별 색상 설정은 없다. 개발 서버를 켠 상태에서 [`index.html`](../index.html)의 한 줄만 바꾸면 HMR로 세 경로가 함께 갱신된다.
+모든 예제는 `@experiential/ui-foundation`의 중립 semantic token을 사용한다. React provider나 게임별 색상 설정은 없다. 개발 서버를 켠 상태에서 [`index.html`](../index.html)의 한 줄만 바꾸면 HMR로 선택 화면과 두 게임 경로가 함께 갱신된다.
 
 ```html
 <html lang="ko" data-theme="high-contrast">

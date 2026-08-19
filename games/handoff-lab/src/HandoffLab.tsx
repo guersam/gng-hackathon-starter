@@ -14,7 +14,7 @@ export function HandoffLab() {
   };
   const board = state.phase === "build" ? view.ownOriginal : view.ownReconstruction;
   return <main className="handoff">
-    <a href="/">← 요일 천재로</a>
+    <a href="/">← 예제 목록</a>
     <p className="eyebrow">TURN-BASED EXPERIENCE</p>
     <h1>Handoff<br/>Lab</h1>
     <p className="lead">만든 것은 넘길 수 있을까요?<br/>설명한 것은 다시 만들 수 있을까요?</p>

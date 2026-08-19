@@ -169,6 +169,7 @@ function Entry({
     );
   return (
     <main className="entry">
+      {!path && <a className="example-back" href="/">← 예제 목록</a>}
       <h1 className="brand brand-title">
         <span>요일</span>
         <span>천재</span>
