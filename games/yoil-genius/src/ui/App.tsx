@@ -94,7 +94,7 @@ export default function App() {
   if (!session)
     return (
       <main className="loading">
-        <span>세션 상태를 불러오는 중</span>
+        <span>게임을 불러오고 있습니다</span>
       </main>
     );
   return <Game session={session} socket={socket} error={error} save={save} connection={connection} />;
@@ -134,7 +134,7 @@ function Entry({
         setCreated(x);
       }
     } catch (e) {
-      setError(e instanceof Error ? e.message : "요청을 완료하지 못했습니다. 잠시 후 다시 시도하세요.");
+      setError(e instanceof Error ? e.message : "처리하지 못했습니다. 잠시 후 다시 해 보세요.");
     }
   };
   if (created)
@@ -142,7 +142,7 @@ function Entry({
       <main className="entry">
         <h1>팀 참가 링크가 준비됐습니다</h1>
         <p className="lead">
-          각 팀에 해당 참가 링크를 보내세요. 이 기기는 진행자 화면으로 사용합니다.
+          팀마다 맞는 링크를 보내 주세요. 지금 쓰는 기기에서는 진행 화면을 엽니다.
         </p>
         <div className="links">
           {created.teams.map((t) => (
@@ -175,9 +175,9 @@ function Entry({
         <span>천재</span>
       </h1>
       <p className="lead">
-        9초의 공동 리듬 사이로
+        9초마다 정해진 요일을 누르면서
         <br />
-        날짜의 요일을 맞혀 보세요.
+        날짜 문제도 풀어 보세요.
       </p>
       {path ? (
         <>
@@ -201,7 +201,7 @@ function Entry({
             <button className={entryMode === "session" ? "selected" : "secondary"} onClick={() => setEntryMode("session")}>팀 세션 만들기</button>
           </div>
           {entryMode === "practice" ? <>
-            <p className="supporting">실제 서버 연결과 9초 의무·요일 문제를 2분 동안 확인합니다. 연습 점수는 팀 순위에 표시되지 않습니다.</p>
+            <p className="supporting">2분 동안 9초 버튼과 날짜 문제를 혼자 해 봅니다. 연습 점수는 팀 순위에 나오지 않습니다.</p>
             <label>
               이름
               <input value={name} onChange={(e) => setName(e.target.value)} maxLength={24} autoFocus />
@@ -252,7 +252,7 @@ function Entry({
           <button onClick={act} disabled={teams * capacity > 30}>
             세션 만들기
           </button>
-          {teams * capacity > 30 && <p className="error" role="alert">전체 인원은 30명까지입니다. 팀 수나 팀 정원을 줄이세요.</p>}
+          {teams * capacity > 30 && <p className="error" role="alert">참가자는 모두 30명까지 들어올 수 있습니다. 팀 수나 팀 정원을 줄여 주세요.</p>}
           </>}
         </>
       )}
@@ -261,7 +261,7 @@ function Entry({
           {error}
         </p>
       )}
-      <footer>게임 구상 도움 · 김창준 (June Kim)</footer>
+      <footer>게임 구상 · 김창준 (June Kim)</footer>
     </main>
   );
 }
@@ -287,7 +287,7 @@ function Game({
   const isHost = session.role === "host";
   if (isHost) return <Host session={session} socket={socket} />;
   if (!meTeam || !teamConfig)
-    return <main className="loading">내 팀 정보를 불러오는 중</main>;
+    return <main className="loading">내 팀을 찾고 있습니다</main>;
   if (meTeam.phase === "finished")
     return <Debrief game={game} team={meTeam} events={session.events} kind={session.snapshot.config.kind} save={save} connection={connection} />;
   if (
@@ -331,7 +331,7 @@ function Lobby({
         {count}
         <i>/{capacity}</i>
       </div>
-      <h1>{practice ? "혼자 연습 준비" : "팀원이 모이는 중"}</h1>
+      <h1>{practice ? "혼자 연습 준비" : "팀원을 기다리고 있습니다"}</h1>
       <ul className="roster">
         {Object.values(team.members).map((m) => (
           <li key={m.id}>{m.name}</li>
@@ -339,13 +339,13 @@ function Lobby({
       </ul>
       {count === capacity && team.phase === "lobby" && (
         <button onClick={() => socket?.command({ type: practice ? "practice.start" : "team.ready" })}>
-          {practice ? "5초 카운트다운 시작" : runMode === "team" ? "우리 팀 5초 카운트다운 시작" : "우리 팀 준비 완료"}
+          {practice ? "5초 뒤 연습 시작" : runMode === "team" ? "우리 팀 게임 시작" : "우리 팀 준비 완료"}
         </button>
       )}
       {team.phase === "ready" && runMode === "cohort" && (
-        <p className="lead">우리 팀은 준비됐습니다. 다른 팀이 준비되면 함께 시작합니다.</p>
+        <p className="lead">우리 팀은 준비됐습니다. 다른 팀이 모두 준비되면 시작합니다.</p>
       )}
-      {team.phase === "countdown" && <p className="countdown">시작 카운트다운 중</p>}
+      {team.phase === "countdown" && <p className="countdown">곧 게임을 시작합니다</p>}
     </main>
   );
 }
@@ -385,10 +385,10 @@ function Play({
   const credit = (team.scoreUnits / SCORE_UNITS_PER_CREDIT).toFixed(1);
   return (
     <main className="game" aria-busy={team.phase === "paused"}>
-      {connection !== "authenticated" && <p className="connection" role="status">{connection === "failed" ? "연결이 끊겼습니다. 인터넷 연결을 확인하면 자동으로 다시 연결합니다." : "실시간 연결을 다시 연결하는 중입니다."}</p>}
+      {connection !== "authenticated" && <p className="connection" role="status">{connection === "failed" ? "실시간 연결이 끊겼습니다. 인터넷 연결을 확인해 주세요. 연결되면 게임이 자동으로 이어집니다." : "게임에 다시 연결하고 있습니다."}</p>}
       {team.phase === "paused" && (
         <p className="paused" role="status">
-          호스트가 시간을 멈췄습니다
+          진행자가 게임을 잠시 멈췄습니다
         </p>
       )}
       <header>
@@ -396,7 +396,7 @@ function Play({
         <strong>{credit} 크레딧</strong>
       </header>
       <section className="pulse" data-pressed={pressed}>
-        <p>지금 눌러야 할 요일</p>
+        <p>지금 누를 요일</p>
         <div className="day">
           {KO[due]}
           <span>{remain.toFixed(1)}</span>
@@ -485,7 +485,7 @@ function Play({
                 })
               }
             >
-              {RANGES[range]} · {limit}초 문제 시작
+              {RANGES[range]} · {limit}초 문제 풀기
             </button>
           </>
         )}
@@ -503,7 +503,7 @@ function Play({
 function Scoreboard({ game }: { game: GameState }) {
   return (
     <section className="scoreboard">
-      <h2>팀 순위 · 1인당 크레딧</h2>
+      <h2>팀 순위 · 1인당 점수</h2>
       {projectLeaderboard(game).map((x) => (
         <div key={x.teamId}>
           <b>{x.rank}</b>
@@ -547,7 +547,7 @@ function Host({
   };
   return (
     <main className="host">
-      <h1>세션의 흐름</h1>
+      <h1>진행자 화면</h1>
       <Scoreboard game={game} />
       <div className="host-actions">
         <button onClick={() => socket?.command({ type: "host.pause" })}>
@@ -564,7 +564,7 @@ function Host({
           세션 종료
         </button>
       </div>
-      <p>호스트 화면을 닫아도 팀의 시계는 계속 흐릅니다.</p>
+      <p>이 화면을 닫아도 게임 시간은 계속 흐릅니다.</p>
     </main>
   );
 }
@@ -600,7 +600,7 @@ function Debrief({
   return (
     <main className="debrief">
       <div className="brand small">끝</div>
-      <h1>{practice ? "내가 지나온 2분" : "우리 팀이 만든 리듬"}</h1>
+      <h1>{practice ? "2분 연습 결과" : "우리 팀 게임 결과"}</h1>
       <p className="lead">
         최종 원점수 {(team.scoreUnits / SCORE_UNITS_PER_CREDIT).toFixed(1)} ·
         {!practice && <>1인당{" "}
@@ -612,24 +612,24 @@ function Debrief({
       </p>
       <dl className="evidence">
         <div>
-          <dt>도전 중 의무 누락</dt>
+          <dt>문제 푸는 중 놓친 9초 버튼</dt>
           <dd>{evidence.challengeMissOverlaps}번</dd>
         </div>
         <div>
-          <dt>마감 직전 회복</dt>
+          <dt>마지막 1초에 맞힌 문제</dt>
           <dd>{evidence.nearDeadlineRecoveries}번</dd>
         </div>
         {Object.entries(evidence.challengeAttemptsByMember).map(
           ([id, count]) => (
             <div key={id}>
-              <dt>{names[id]?.name ?? "팀원"}의 도전</dt>
+              <dt>{names[id]?.name ?? "팀원"}의 문제 풀이</dt>
               <dd>{count}번</dd>
             </div>
           ),
         )}
         {Object.entries(evidence.dutyMissesByMember).map(([id, count]) => (
           <div key={`miss-${id}`}>
-            <dt>{names[id]?.name ?? "팀원"}의 의무 누락</dt>
+            <dt>{names[id]?.name ?? "팀원"}이 놓친 9초 버튼</dt>
             <dd>{count}번</dd>
           </div>
         ))}
@@ -637,15 +637,15 @@ function Debrief({
       {practice && <section className="readiness" aria-labelledby="readiness-title">
         <h2 id="readiness-title">사전 준비 확인</h2>
         <ul>
-          <li data-ok={health}>배포 저장소 상태</li>
-          <li data-ok={connection === "authenticated"}>인증된 실시간 연결</li>
-          <li data-ok={team.phase === "finished"}>서버 권위로 2분 종료</li>
-          <li data-ok={domainEvents.some((event) => event.type === "duty.window_settled")}>9초 의무 기록 저장</li>
-          <li data-ok={domainEvents.some((event) => event.type === "challenge.resolved")}>요일 문제 결과 저장</li>
+          <li data-ok={health}>서버 저장 상태</li>
+          <li data-ok={connection === "authenticated"}>실시간 연결</li>
+          <li data-ok={team.phase === "finished"}>서버 시간으로 2분 종료</li>
+          <li data-ok={domainEvents.some((event) => event.type === "duty.window_settled")}>9초 버튼 기록</li>
+          <li data-ok={domainEvents.some((event) => event.type === "challenge.resolved")}>요일 문제 기록</li>
         </ul>
-        <p>이 목록은 이 브라우저의 자기 점검이며 수료 인증서가 아닙니다.</p>
+        <p>다섯 항목이 모두 확인되면 사전 준비가 끝납니다.</p>
       </section>}
-      <h2>마지막 사건의 흐름</h2>
+      <h2>최근 게임 기록</h2>
       <ol className="timeline">
         {timeline.map((event, index) => (
           <li key={`${event.atMs}-${index}`}>
@@ -673,15 +673,15 @@ function Debrief({
 function eventLabel(event: GameEvent, names: TeamState["members"]): string {
   if (event.type === "duty.window_settled")
     return event.missedMemberIds.length
-      ? `${event.missedMemberIds.map((id) => names[id]?.name ?? "팀원").join(", ")} 의무 누락`
-      : "모두 의무 완료";
+      ? `${event.missedMemberIds.map((id) => names[id]?.name ?? "팀원").join(", ")} 9초 버튼 놓침`
+      : "모두 9초 버튼 누름";
   if (event.type === "challenge.started")
-    return `${names[event.challenge.memberId]?.name ?? "팀원"} ${RANGES[event.challenge.rangeId]} · ${event.challenge.timeLimit}초 문제 시작`;
+    return `${names[event.challenge.memberId]?.name ?? "팀원"} ${RANGES[event.challenge.rangeId]} · ${event.challenge.timeLimit}초 문제 풀기 시작`;
   if (event.type === "challenge.resolved")
     return `${names[event.memberId]?.name ?? "팀원"} 문제 ${event.outcome === "correct" ? "정답" : event.outcome === "wrong" ? "오답" : "시간 초과"}`;
-  if (event.type === "team.paused") return "팀 시계 멈춤";
-  if (event.type === "team.resumed") return "팀 시계 재개";
-  if (event.type === "team.finished") return "플레이 종료";
-  if (event.type === "team.started") return "플레이 시작";
-  return "팀 행동 기록";
+  if (event.type === "team.paused") return "게임 일시정지";
+  if (event.type === "team.resumed") return "게임 재개";
+  if (event.type === "team.finished") return "게임 종료";
+  if (event.type === "team.started") return "게임 시작";
+  return "팀 게임 기록";
 }

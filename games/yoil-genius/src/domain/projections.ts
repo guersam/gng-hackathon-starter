@@ -35,13 +35,13 @@ export function projectDebrief(events: readonly GameEvent[], teamId: string, kin
     }
   }
   const prompts = kind === "solo_practice" ? [
-    "문제를 풀며 9초 리듬을 놓친 순간에 무엇이 주의를 가져갔나요?",
-    "어떤 범위와 시간 선택 뒤에 위험 선택이 달라졌나요?",
-    "실제 팀에 들어가기 전 어떤 신호나 도움 요청을 정하고 싶나요?",
+    "날짜 문제를 푸는 동안 9초 버튼을 놓쳤다면, 무엇에 신경을 쓰고 있었나요?",
+    "날짜 범위와 제한 시간을 고르는 방식이 언제 달라졌나요?",
+    "팀 게임을 하기 전에 어떤 신호를 정해 두면 좋을까요?",
   ] : [
-    overlaps ? `도전 중 의무 누락이 겹친 장면이 ${overlaps}번 있었습니다. 그 순간 팀은 무엇을 알아차리고 조정했나요?` : "도전과 의무가 겹칠 때 팀은 어떤 신호로 서로의 상태를 확인했나요?",
-    recoveries ? `마감 직전 정답이 ${recoveries}번 있었습니다. 그 회복을 가능하게 한 상호작용은 무엇이었나요?` : "시간 압박이 커졌을 때 팀의 선택은 어떻게 달라졌나요?",
-    "도전 시도와 의무 누락의 분포를 보고, 다음 판에는 일을 어떻게 나누거나 다시 합치고 싶나요?",
+    overlaps ? "날짜 문제를 풀다가 9초 버튼을 놓친 때가 " + overlaps + "번 있었습니다. 그때 팀은 어떻게 대응했나요?" : "날짜 문제와 9초 버튼이 겹쳤을 때 서로 어떻게 알렸나요?",
+    recoveries ? "제한 시간이 1초도 남지 않았을 때 맞힌 문제가 " + recoveries + "번 있었습니다. 무엇이 도움이 됐나요?" : "시간이 부족해졌을 때 문제를 고르는 방식이 어떻게 달라졌나요?",
+    "누가 문제를 많이 풀었고 누가 9초 버튼을 자주 놓쳤나요? 다음 판에는 일을 어떻게 나눌까요?",
   ];
   return { teamId, challengeMissOverlaps: overlaps, nearDeadlineRecoveries: recoveries, challengeAttemptsByMember: attempts, dutyMissesByMember: misses, prompts };
 }

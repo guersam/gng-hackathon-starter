@@ -75,7 +75,7 @@ export class YoilSession extends DurableObject<Env> {
     this.setSnapshot(snapshot);
     this.appendEvent("session.created", now, null, { config: snapshot.config }, null);
     if (config.kind === "team_simulation") {
-      if (!hostCapability) throw new Error("호스트 권한이 필요합니다.");
+      if (!hostCapability) throw new Error("진행자 권한이 필요합니다.");
       await this.putCapability({ capabilityHash: await hashCapability(hostCapability), role: "host", participantId: `host:${sessionId}`, teamId: null, displayName: null, createdAt: now });
     } else if (practiceParticipant) {
       await this.putCapability({ capabilityHash: await hashCapability(practiceParticipant.capability), role: "player", participantId: practiceParticipant.participantId, teamId: "solo", displayName: practiceParticipant.displayName, createdAt: now });
@@ -121,7 +121,7 @@ export class YoilSession extends DurableObject<Env> {
   private async exportEvents(request: Request): Promise<Response> {
     const capability = bearer(request);
     const record = capability ? await this.findCapability(capability) : null;
-    if (record?.role !== "host") return this.json({ error: "forbidden", message: "호스트 권한이 필요합니다." }, 403);
+    if (record?.role !== "host") return this.json({ error: "forbidden", message: "진행자 권한이 필요합니다." }, 403);
     return this.json({ snapshot: this.requireSnapshot(), events: this.eventsSince(0) });
   }
 
@@ -160,7 +160,7 @@ export class YoilSession extends DurableObject<Env> {
     const existing = [...this.ctx.storage.sql.exec<{ sequence: number }>("SELECT sequence FROM events WHERE command_id = ?", commandId)][0];
     if (existing) return;
     const snapshot = this.requireSnapshot();
-    if (snapshot.config.kind === "solo_practice" && command.type !== "practice.start" && command.type.startsWith("host.")) return this.send(ws, { type: "rejection", code: "forbidden", message: "혼자 연습에는 호스트 명령이 없습니다.", commandId });
+    if (snapshot.config.kind === "solo_practice" && command.type !== "practice.start" && command.type.startsWith("host.")) return this.send(ws, { type: "rejection", code: "forbidden", message: "혼자 연습에서는 진행자 기능을 쓸 수 없습니다.", commandId });
     const domainCommand = commandForActor(command, commandId, Date.now(), actor);
     if (!domainCommand) return this.send(ws, { type: "rejection", code: "forbidden", message: "이 명령을 실행할 권한이 없습니다.", commandId });
     const decision = applyGameCommand(snapshot.game, domainCommand);

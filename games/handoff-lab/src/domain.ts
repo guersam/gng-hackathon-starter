@@ -20,12 +20,12 @@ export const handoffManifest = {
   id: "handoff-lab",
   schemaVersion: 1,
   title: "Handoff Lab",
-  summary: "만들고, 설명하고, 넘겨받아 다시 만드는 턴제 시뮬레이션",
-  experientialIntent: "설계 기준, 문서의 한계와 유지보수 인수인계 사이의 관계를 몸으로 경험한다.",
+  summary: "한쪽이 만든 모양을 글로 설명하고, 다른 쪽이 설명만 보고 다시 만드는 게임",
+  experientialIntent: "같은 설명을 서로 다르게 이해하는 순간과 말로 옮기기 어려운 기준을 찾아본다.",
   participantRange: { min: 4, max: 10 },
   expectedMinutes: 8,
-  selfGuidedInstructions: ["두 그룹이 서로 보지 않고 구조를 만듭니다.", "120자 이내 문서만 남깁니다.", "상대 문서만 보고 구조를 재구성합니다.", "원본과 재구성을 나란히 보고 실제 차이를 이야기합니다."],
-  finalePlan: { participantCount: 30, roomCount: 2, topology: "방마다 3개 교환조가 한 기기씩 pass-and-play", participantRoles: ["방 진행자 1명", "교환조 4~5명"], setupInstructions: ["각 방을 A/B 교환조로 나눈다.", "조마다 한 기기에서 /handoff를 연다.", "재구성 후 대표 차이 하나를 방에 공유한다."], contingency: "기기 수가 부족하면 종이 구조와 한 기기의 문서 화면으로 순차 진행한다." },
+  selfGuidedInstructions: ["두 그룹이 서로 보지 않고 모양을 만듭니다.", "만든 모양을 120자 안으로 설명합니다.", "상대 그룹의 설명만 보고 같은 모양을 만듭니다.", "원본과 다시 만든 모양을 나란히 보고 차이를 이야기합니다."],
+  finalePlan: { participantCount: 30, roomCount: 2, topology: "두 방에서 세 조씩, 조마다 기기 한 대를 번갈아 사용", participantRoles: ["방마다 진행자 1명", "조마다 참가자 4~5명"], setupInstructions: ["각 조를 A와 B 두 그룹으로 나눈다.", "조마다 한 기기에서 /handoff를 연다.", "비교가 끝나면 눈에 띈 차이 하나를 같은 방에 공유한다."], contingency: "기기가 부족하면 종이로 모양을 만들고 한 기기에서 설명을 번갈아 쓴다." },
 } satisfies GameManifest;
 
 export function createHandoffState(): HandoffState {
@@ -37,7 +37,7 @@ export function decideHandoff(state: HandoffState, action: HandoffAction): { ok:
   if (state.ready.includes(action.group)) return { ok: false, code: "group_locked", message: "이 단계에서 이미 준비를 마쳤습니다." };
   if (action.type === "tile.set") {
     const expected = state.phase === "build" ? "original" : state.phase === "reconstruct" ? "reconstruction" : null;
-    if (action.target !== expected || action.index < 0 || action.index > 8) return { ok: false, code: "tile_not_allowed", message: "지금 바꿀 수 없는 구조입니다." };
+    if (action.target !== expected || action.index < 0 || action.index > 8) return { ok: false, code: "tile_not_allowed", message: "지금은 이 모양을 바꿀 수 없습니다." };
   }
   if (action.type === "document.set" && (state.phase !== "document" || action.text.length > 120)) return { ok: false, code: "document_not_allowed", message: "문서는 기록 단계에서 120자까지 쓸 수 있습니다." };
   return { ok: true, events: [{ ...action, sequence: 1 }] };
