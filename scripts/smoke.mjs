@@ -1,4 +1,4 @@
-const base = process.argv[2];
+const base = process.argv.slice(2).find((argument) => argument !== "--");
 if (!base) {
   console.error("사용법: pnpm smoke -- https://배포주소");
   process.exit(2);

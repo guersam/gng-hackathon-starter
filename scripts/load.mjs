@@ -1,4 +1,4 @@
-const base = process.argv[2];
+const base = process.argv.slice(2).find((argument) => argument !== "--");
 if (!base) {
   console.error("사용법: pnpm load -- https://배포주소");
   process.exit(2);
@@ -18,6 +18,7 @@ const createdResponse = await fetch(new URL("/api/sessions", base), {
 if (!createdResponse.ok)
   throw new Error(`세션 생성 실패: ${createdResponse.status}`);
 const created = await createdResponse.json();
+console.error("[load] 세션 생성 완료");
 const joins = teams.flatMap((team) =>
   Array.from({ length: 5 }, (_, i) => ({
     teamId: team.id,
@@ -40,6 +41,7 @@ const participants = await Promise.all(
     return response.json();
   }),
 );
+console.error("[load] 30명 참가 완료");
 const wsUrl = new URL(`/api/sessions/${created.sessionId}/ws`, base);
 wsUrl.protocol = wsUrl.protocol === "https:" ? "wss:" : "ws:";
 const connect = (participant) =>
@@ -66,6 +68,7 @@ const connect = (participant) =>
         ws.onerror = () => reject(new Error("WebSocket 연결 실패"));
       });
 let sockets = await Promise.all(participants.map(connect));
+console.error("[load] 30 WebSocket 인증 완료");
 for (const team of teams) {
   const actor = sockets.find((item) => item.participant.teamId === team.id);
   actor.ws.send(
@@ -76,6 +79,7 @@ for (const team of teams) {
     }),
   );
 }
+console.error("[load] 팀 준비 명령 전송 완료");
 await delay(5500);
 const pressAll = (weekday) => {
   for (const { ws } of sockets) ws.send(
@@ -102,12 +106,14 @@ sockets = [...replacements, ...sockets.slice(3)];
 await delay(8750);
 pressAll("wednesday");
 await delay(9000);
+console.error("[load] 의무·문제·재연결 시나리오 완료");
 const exported = await fetch(
   new URL(`/api/sessions/${created.sessionId}/export`, base),
   { headers: { authorization: `Bearer ${created.hostCapability}` } },
 );
 if (!exported.ok) throw new Error(`사건 내보내기 실패: ${exported.status}`);
 const trace = await exported.json();
+console.error("[load] 사건 export 완료");
 for (const { ws } of sockets) ws.close();
 const domain = trace.events.map((event) => event.payload);
 const presses = domain.filter((event) => event.type === "duty.pressed");
@@ -123,8 +129,10 @@ if (
 )
   throw new Error("마감 정산이 중복되었거나 누락되었습니다.");
 if (challenges.length !== 30) throw new Error(`문제 결과 유실: ${challenges.length}/30`);
+console.error("[load] 사건 수 검증 완료");
 const resumed = await Promise.all(participants.map((participant) => fetch(new URL(`/api/sessions/${created.sessionId}/resume`, base), { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({ capability: participant.capability }) }).then((response) => response.json())));
 if (resumed.some((item) => item.snapshot.revision !== trace.snapshot.revision || item.snapshot.game.eventCount !== trace.snapshot.game.eventCount)) throw new Error("재연결 스냅샷과 내보내기 기록이 일치하지 않습니다.");
+console.error("[load] 30명 resume 검증 완료");
 latencies.sort((a, b) => a - b);
 const p95 = latencies[Math.ceil(latencies.length * 0.95) - 1];
 console.log(
