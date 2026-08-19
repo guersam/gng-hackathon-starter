@@ -9,14 +9,14 @@ export function StarterHome() {
         <a href="/yoil" className="starter-game">
           <span>실시간 팀 시뮬레이션</span>
           <h2>요일 천재</h2>
-          <p>서버 시간, WebSocket, 팀 점수와 사건 기록까지 바꾸고 싶을 때 시작합니다.</p>
-          <strong>플레이하기 →</strong>
+          <p>여러 휴대전화가 실시간으로 연결되는 팀 게임입니다. 9초마다 요일을 누르며 날짜 문제를 풉니다.</p>
+          <strong>게임 열기 →</strong>
         </a>
         <a href="/handoff" className="starter-game">
           <span>한 기기 턴제 시뮬레이션</span>
           <h2>Handoff Lab</h2>
-          <p>상태, 행동과 결과를 빠르게 바꾸고 팀이 바로 다시 플레이하게 할 때 시작합니다.</p>
-          <strong>플레이하기 →</strong>
+          <p>한 기기를 두 그룹이 번갈아 쓰는 게임입니다. 만들기·설명·재구성의 차이를 비교합니다.</p>
+          <strong>게임 열기 →</strong>
         </a>
       </section>
       <section className="starter-steps" aria-labelledby="starter-steps-title">

@@ -94,7 +94,7 @@ export default function App() {
   if (!session)
     return (
       <main className="loading">
-        <span>요일을 모으는 중</span>
+        <span>세션 상태를 불러오는 중</span>
       </main>
     );
   return <Game session={session} socket={socket} error={error} save={save} connection={connection} />;
@@ -134,15 +134,15 @@ function Entry({
         setCreated(x);
       }
     } catch (e) {
-      setError(e instanceof Error ? e.message : "오류가 났습니다.");
+      setError(e instanceof Error ? e.message : "요청을 완료하지 못했습니다. 잠시 후 다시 시도하세요.");
     }
   };
   if (created)
     return (
       <main className="entry">
-        <h1>팀으로 가는 길</h1>
+        <h1>팀 참가 링크가 준비됐습니다</h1>
         <p className="lead">
-          링크를 팀별로 나눠 주세요. 호스트 화면은 이 기기에 보관됩니다.
+          각 팀에 해당 참가 링크를 보내세요. 이 기기는 진행자 화면으로 사용합니다.
         </p>
         <div className="links">
           {created.teams.map((t) => (
@@ -163,7 +163,7 @@ function Entry({
             })
           }
         >
-          호스트 화면 열기
+          진행자 화면 열기
         </button>
       </main>
     );
@@ -201,12 +201,12 @@ function Entry({
             <button className={entryMode === "session" ? "selected" : "secondary"} onClick={() => setEntryMode("session")}>팀 세션 만들기</button>
           </div>
           {entryMode === "practice" ? <>
-            <p className="supporting">내 배포의 실시간 연결과 실제 게임 규칙을 혼자 확인합니다. 팀 순위에는 들어가지 않습니다.</p>
+            <p className="supporting">실제 서버 연결과 9초 의무·요일 문제를 2분 동안 확인합니다. 연습 점수는 팀 순위에 표시되지 않습니다.</p>
             <label>
               이름
               <input value={name} onChange={(e) => setName(e.target.value)} maxLength={24} autoFocus />
             </label>
-            <button className="practice-start" onClick={act} disabled={!name.trim()}>비공개 연습 만들기</button>
+            <button className="practice-start" onClick={act} disabled={!name.trim()}>혼자 연습 시작</button>
           </> : <><div className="split">
             <label>
               팀 수
@@ -238,7 +238,7 @@ function Entry({
                 checked={mode === "team"}
                 onChange={() => setMode("team")}
               />{" "}
-              팀별 시작
+              팀별 시작 — 정원이 찬 팀부터 시작
             </label>
             <label>
               <input
@@ -246,12 +246,13 @@ function Entry({
                 checked={mode === "cohort"}
                 onChange={() => setMode("cohort")}
               />{" "}
-              전체 동시 시작
+              전체 동시 시작 — 모든 팀이 준비되면 함께 시작
             </label>
           </fieldset>
           <button onClick={act} disabled={teams * capacity > 30}>
             세션 만들기
           </button>
+          {teams * capacity > 30 && <p className="error" role="alert">전체 인원은 30명까지입니다. 팀 수나 팀 정원을 줄이세요.</p>}
           </>}
         </>
       )}
@@ -286,7 +287,7 @@ function Game({
   const isHost = session.role === "host";
   if (isHost) return <Host session={session} socket={socket} />;
   if (!meTeam || !teamConfig)
-    return <main className="loading">팀을 찾는 중</main>;
+    return <main className="loading">내 팀 정보를 불러오는 중</main>;
   if (meTeam.phase === "finished")
     return <Debrief game={game} team={meTeam} events={session.events} kind={session.snapshot.config.kind} save={save} connection={connection} />;
   if (
@@ -295,7 +296,7 @@ function Game({
     meTeam.phase === "countdown"
   )
     return (
-      <Lobby team={meTeam} capacity={teamConfig.capacity} socket={socket} practice={session.snapshot.config.kind === "solo_practice"} />
+      <Lobby team={meTeam} capacity={teamConfig.capacity} socket={socket} practice={session.snapshot.config.kind === "solo_practice"} runMode={session.snapshot.config.runMode} />
     );
   return (
     <Play
@@ -315,11 +316,13 @@ function Lobby({
   capacity,
   socket,
   practice,
+  runMode,
 }: {
   team: TeamState;
   capacity: number;
   socket: GameSocket | null;
   practice: boolean;
+  runMode: "team" | "cohort";
 }) {
   const count = Object.keys(team.members).length;
   return (
@@ -336,13 +339,13 @@ function Lobby({
       </ul>
       {count === capacity && team.phase === "lobby" && (
         <button onClick={() => socket?.command({ type: practice ? "practice.start" : "team.ready" })}>
-          {practice ? "5초 뒤 연습 시작" : "우리 팀 준비 완료"}
+          {practice ? "5초 카운트다운 시작" : runMode === "team" ? "우리 팀 5초 카운트다운 시작" : "우리 팀 준비 완료"}
         </button>
       )}
-      {team.phase === "ready" && (
-        <p className="lead">다른 팀을 기다리고 있어요.</p>
+      {team.phase === "ready" && runMode === "cohort" && (
+        <p className="lead">우리 팀은 준비됐습니다. 다른 팀이 준비되면 함께 시작합니다.</p>
       )}
-      {team.phase === "countdown" && <p className="countdown">곧 시작합니다</p>}
+      {team.phase === "countdown" && <p className="countdown">시작 카운트다운 중</p>}
     </main>
   );
 }
@@ -382,7 +385,7 @@ function Play({
   const credit = (team.scoreUnits / SCORE_UNITS_PER_CREDIT).toFixed(1);
   return (
     <main className="game" aria-busy={team.phase === "paused"}>
-      {connection !== "authenticated" && <p className="connection" role="status">{connection === "failed" ? "연결을 확인해 주세요" : "실시간 연결을 복구하는 중"}</p>}
+      {connection !== "authenticated" && <p className="connection" role="status">{connection === "failed" ? "연결이 끊겼습니다. 인터넷 연결을 확인하면 자동으로 다시 연결합니다." : "실시간 연결을 다시 연결하는 중입니다."}</p>}
       {team.phase === "paused" && (
         <p className="paused" role="status">
           호스트가 시간을 멈췄습니다
@@ -403,7 +406,7 @@ function Play({
           disabled={pressed || team.phase === "paused"}
           onClick={() => socket?.command({ type: "duty.press", weekday: due })}
         >
-          {pressed ? "완료" : "내 몫 누르기"}
+          {pressed ? KO[due] + "요일 완료" : KO[due] + "요일 누르기"}
         </button>
         {!practice && <div className="people">
           {Object.values(team.members).map((m) => (
@@ -451,7 +454,7 @@ function Play({
         ) : (
           <>
             <div className="pickers">
-              <select
+              <label>날짜 범위<select
                 value={range}
                 onChange={(e) => setRange(e.target.value as RangeId)}
               >
@@ -460,8 +463,8 @@ function Play({
                     {RANGES[r]}
                   </option>
                 ))}
-              </select>
-              <select
+              </select></label>
+              <label>제한 시간<select
                 value={limit}
                 onChange={(e) => setLimit(+e.target.value as TimeLimit)}
               >
@@ -470,7 +473,7 @@ function Play({
                     {t}초
                   </option>
                 ))}
-              </select>
+              </select></label>
             </div>
             <button
               className="secondary"
@@ -482,7 +485,7 @@ function Play({
                 })
               }
             >
-              문제 받기
+              {RANGES[range]} · {limit}초 문제 시작
             </button>
           </>
         )}
@@ -500,13 +503,13 @@ function Play({
 function Scoreboard({ game }: { game: GameState }) {
   return (
     <section className="scoreboard">
-      <h2>모든 팀 · 1인당</h2>
+      <h2>팀 순위 · 1인당 크레딧</h2>
       {projectLeaderboard(game).map((x) => (
         <div key={x.teamId}>
           <b>{x.rank}</b>
           <span>
             {x.label}
-            <small>{x.rawCredits.toFixed(1)} 원점수</small>
+            <small>{x.rawCredits.toFixed(1)} 팀 합계</small>
           </span>
           <strong>
             {Number.isFinite(x.unitsPerMember)
@@ -548,17 +551,17 @@ function Host({
       <Scoreboard game={game} />
       <div className="host-actions">
         <button onClick={() => socket?.command({ type: "host.pause" })}>
-          전체 멈춤
+          전체 일시정지
         </button>
         <button onClick={() => socket?.command({ type: "host.resume" })}>
-          다시 흐르기
+          전체 재개
         </button>
         <button onClick={download}>사건 기록 내려받기</button>
         <button
           className="danger"
           onClick={() => socket?.command({ type: "host.end" })}
         >
-          세션 끝내기
+          세션 종료
         </button>
       </div>
       <p>호스트 화면을 닫아도 팀의 시계는 계속 흐릅니다.</p>

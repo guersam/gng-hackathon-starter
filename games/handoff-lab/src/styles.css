@@ -39,11 +39,17 @@
   padding-top: 20px;
 }
 
+.handoff-stage .step { margin: 0; color: var(--ui-text-muted); font-weight: 700; }
+
 .handoff-stage h2 {
   margin: 4px 0 18px;
   font-size: clamp(1.7rem, 7vw, 2.5rem);
   line-height: 1.2;
 }
+
+.handoff-stage h3 { margin: 26px 0 8px; }
+
+.document-label { display: block; margin-top: 28px; font-weight: 700; }
 
 .handoff-stage textarea {
   width: 100%;
@@ -84,6 +90,10 @@
 .tile-board button[data-tile="ink"] { background: var(--ui-action-primary); }
 .tile-board button[data-tile="acid"] { background: var(--ui-action-accent); }
 .tile-board button:disabled { opacity: 1; }
+
+.handoff-next { color: var(--ui-text-muted); font-size: 0.9rem; }
+
+.comparison-pair { margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--ui-border-subtle); }
 
 .compare {
   display: grid;

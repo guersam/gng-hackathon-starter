@@ -25,7 +25,7 @@ export interface ResumeEnvelope {
   snapshot: {
     sessionId: string;
     status: string;
-    config: { kind: "team_simulation" | "solo_practice"; durationSeconds: number; teams: Array<{ id: string; label: string; capacity: number }> };
+    config: { kind: "team_simulation" | "solo_practice"; runMode: "team" | "cohort"; durationSeconds: number; teams: Array<{ id: string; label: string; capacity: number }> };
     game: GameState;
   };
   events: StoredEventView[];

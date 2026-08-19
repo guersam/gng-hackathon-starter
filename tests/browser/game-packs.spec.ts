@@ -9,9 +9,10 @@ test("starter offers only the two reference games", async ({ page }) => {
 
 test("handoff lab reaches document phase", async ({ page }) => {
   await page.goto("/handoff");
-  await page.getByLabel("1번 칸 empty").click();
-  await page.getByRole("button", { name: "이 단계 준비 완료" }).click();
-  await page.getByRole("button", { name: "B 그룹" }).click();
-  await page.getByRole("button", { name: "이 단계 준비 완료" }).click();
-  await expect(page.getByRole("heading", { name: "문서 남기기" })).toBeVisible();
+  await page.getByLabel("1번 칸, 흰색, 누르면 색상 변경").click();
+  await page.getByRole("button", { name: "A 그룹 구조 저장" }).click();
+  await page.getByRole("button", { name: "B 그룹 구조 저장" }).click();
+  await expect(page.getByRole("heading", { name: "원본을 글로 설명하기" })).toBeVisible();
+  await expect(page.getByLabel("상대 그룹에게 넘길 설명")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "A 그룹의 원본" })).toBeVisible();
 });
