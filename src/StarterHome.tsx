@@ -2,7 +2,10 @@ export function StarterHome() {
   return (
     <main className="starter-home">
       <header>
-        <h1>두 게임을 먼저<br />해 보세요.</h1>
+        <h1>
+          <span>두 게임을 먼저</span>
+          <span>해 보세요.</span>
+        </h1>
         <p className="lead">만들고 싶은 게임과 가까운 쪽을 골라서 바꿔 보세요. 원본을 남기고 싶다면 복사해서 새 게임을 만들 수도 있습니다.</p>
       </header>
       <section className="starter-games" aria-label="기준 게임 선택">

@@ -1,6 +1,7 @@
 .starter-home { min-height: 100svh; max-width: 760px; margin: auto; padding: clamp(24px, 6vw, 64px); }
 .starter-home header { padding-bottom: 34px; }
-.starter-home h1 { max-width: 10ch; margin: 0; font-size: clamp(3.2rem, 13vw, 6rem); line-height: 0.98; letter-spacing: -0.04em; }
+.starter-home h1 { margin: 0; font-size: clamp(2.25rem, 10.5vw, 5.2rem); line-height: 1.02; letter-spacing: -0.04em; }
+.starter-home h1 span { display: block; white-space: nowrap; }
 .starter-home .lead { max-width: 34rem; margin: 28px 0 0; }
 .starter-games { border-top: 5px solid var(--ui-border-strong); }
 .starter-game { display: grid; grid-template-columns: 1fr auto; gap: 8px 28px; min-height: 180px; padding: 24px 0; border-bottom: 1px solid var(--ui-border-subtle); color: var(--ui-text); text-decoration: none; }
