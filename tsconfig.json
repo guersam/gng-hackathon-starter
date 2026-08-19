@@ -10,5 +10,5 @@
     "skipLibCheck": true,
     "types": ["@cloudflare/workers-types", "vite/client"]
   },
-  "include": ["src", "games", "packages", "tests/domain", "vite.config.ts", "vitest.domain.config.ts", "vitest.worker.config.ts"]
+  "include": ["src", "games", "packages", "tests/architecture", "tests/browser", "playwright.config.ts", "vite.config.ts", "vitest.domain.config.ts", "vitest.worker.config.ts"]
 }

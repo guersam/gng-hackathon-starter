@@ -7,25 +7,21 @@
 서로 전혀 다른 체험형 게임을 90분 안에 플레이→수정→재플레이하기 위한 pnpm 워크스페이스다. `요일 천재`는 서버 권위 실시간 게임의 완성 예제, `Handoff Lab`은 만들기→문서→인수인계→재구성의 턴제 예제, `우리 팀의 실험`은 한 상황→선택→공개로 항상 실행되는 시작점이다.
 
 ```text
-games/yoil-genius         완성형 실시간 예제의 domain·UI·manifest
-games/handoff-lab         턴제 pass-and-play 예제
-games/workshop-game       수정용 최소 선택→공개 게임 팩
-packages/simulation-kit   게임 정의·manifest·검증 계약 (플랫폼 비의존)
-packages/cloudflare-host  멱등 사건 접기의 검증된 추출물 (아직 Worker 미통합)
-packages/ui-foundation    게임 의미를 모르는 CSS base·semantic token·두 preset
-src/worker                Yoil용 Cloudflare Worker·SQLite DO 어댑터
-src/main.tsx              세 예제의 얇은 경로 조립
-tests                     공통 architecture·Worker·브라우저 인수 검사
+games/                    바로 실행하거나 복사할 세 게임 팩
+packages/simulation-kit   플랫폼과 무관한 게임 계약
+packages/ui-foundation    공통 CSS base와 중립 테마 토큰
+src/worker                요일 천재용 Cloudflare Worker·SQLite DO
+tests/                    도메인·Worker·브라우저 검사
 ```
 
-`pnpm check:boundaries`는 게임 팩이 Worker 구현을 참조하거나 범용 커널이 특정 게임을 참조하는 일을 막는다. 외부 갤러리, 팀 배정과 투표는 이 런타임의 책임이 아니다.
+처음 수정할 때는 `/workshop`을 플레이한 뒤 `games/workshop-game`에서 상황과 두 선택을 바꾼다. 파일을 복사해 새 게임으로 등록하는 순서는 [새 게임 팩 추가](./docs/games/new-game.md)를 따른다.
 
 ## 사전 준비와 배포
 
 Node.js 22+, pnpm 11+, Git, 무료 Cloudflare 계정이 필요하다. Corepack을 쓸 수 있으면 `corepack enable`로 저장소가 고정한 pnpm 버전을 사용한다.
 
 ```bash
-# 먼저 GitHub에서 fork한 뒤 본인 저장소를 복제한다.
+# GitHub template으로 만든 저장소 또는 fork를 복제한다.
 git clone https://github.com/<내-계정>/gng-hackathon-starter.git
 cd gng-hackathon-starter
 pnpm install --frozen-lockfile
@@ -45,27 +41,27 @@ pnpm smoke -- https://내-배포-주소.workers.dev
 pnpm install --frozen-lockfile
 pnpm dev
 pnpm check
+pnpm exec playwright install chromium
 pnpm test:browser
 ```
 
 테마는 [`index.html`](./index.html)의 `data-theme="paper"`를 `high-contrast`로 바꾸면 개발 서버에서 즉시 갱신된다. 새 preset 작성법과 중립 token 계약은 [테마 가이드](./docs/themes.md)에 있다.
 
-로컬 릴리스 증거는 다음 관문으로 나눈다.
+## 다음 단계
 
-```bash
-pnpm test:browser:visual  # 320px/1280px 스크린샷과 수평 오버플로
-pnpm test:browser:scale   # 30개 독립 컨텍스트의 실제 WebSocket 인증
-pnpm test:browser:full    # 120초 서버 권위 종료와 사건 증거
-```
+참가자:
 
-HTML 보고서는 `playwright-report/`, 스크린샷·trace는 `test-results/`에 생성되며 커밋하지 않는다. 로컬 30브라우저 통과는 무료 계정 할당량과 행사장 네트워크를 보증하지 않으므로 배포 후 `pnpm load`와 현장 리허설을 별도로 수행한다.
+- [최소 게임을 복사해 새 팩 만들기](./docs/games/new-game.md)
+- [공통 테마 바꾸기](./docs/themes.md)
+
+진행자:
+
+- [90분 해커톤 운영](./docs/workshop/README.md)
+- [사전 배포 확인과 문제 해결](./docs/workshop/prerequisite.md)
+
+설계 근거가 필요할 때만 읽는 참고자료:
 
 - [제품·플랫폼 계약](./PRODUCT.md)
-- [CLEAR 아키텍처 기준선](./docs/architecture/README.md)
-- [90분 해커톤 운영](./docs/workshop/README.md)
-- [사전 배포 확인](./docs/workshop/prerequisite.md)
-- [새 게임 팩 추가](./docs/games/new-game.md)
-- [요일 천재 디자인 계약](./docs/games/yoil-genius-design.md)
-- [공통 테마 바꾸기](./docs/themes.md)
+- [아키텍처 결정과 검증](./docs/architecture/README.md)
 
 코드는 [MIT License](./LICENSE)로 제공한다. Game concept courtesy of [김창준 (June Kim)](https://x.com/cjunekim).

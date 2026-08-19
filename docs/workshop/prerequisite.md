@@ -15,6 +15,7 @@ node --version
 pnpm --version
 pnpm install --frozen-lockfile
 pnpm check
+pnpm exec playwright install chromium
 pnpm test:browser
 pnpm exec wrangler whoami
 pnpm deploy
@@ -40,5 +41,3 @@ Node.js는 22 이상을 사용한다. `wrangler whoami`가 다른 계정을 가�
 ### 무료 제공량 또는 계정 제한 문제
 
 [공식 요금 문서](https://developers.cloudflare.com/workers/platform/pricing/)와 [Durable Objects 제한](https://developers.cloudflare.com/durable-objects/platform/limits/)을 현재 계정 대시보드와 함께 확인한다. 결제를 즉석에서 활성화하지 말고 진행자에게 알려 로컬 진행 또는 검증된 대체 배포를 선택한다.
-
-Context7 조회가 할당량 오류로 실패할 때는 `npx ctx7@latest login` 또는 `CONTEXT7_API_KEY` 설정으로 한도를 높인 뒤 공식 문서를 다시 조회한다. 비밀값은 명령 인자, 질문, 커밋에 포함하지 않는다.

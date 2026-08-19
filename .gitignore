@@ -9,10 +9,7 @@ playwright-report
 *.tsbuildinfo
 .DS_Store
 
-# 마켓플레이스 통합이 설치하는 에이전트 툴링 (게임 코드 아님)
+# 로컬 개발 도구
 .agents/
 .claude/
 skills-lock.json
-
-# 선택적 디자인 도구의 로컬 상태
-.impeccable/
