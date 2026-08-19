@@ -2,7 +2,7 @@
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/guersam/gng-hackathon-starter)
 
-> 이 저장소는 공개 template이다. 위 버튼으로 새 저장소를 만들거나 fork한 뒤, 참가자 각자의 Cloudflare 계정에 배포한다.
+> 게임을 먼저 실행해 보려면 위 Deploy 버튼을 사용한다. 해커톤에서 코드를 수정할 참가자는 이 공개 template으로 새 저장소를 만들거나 fork한 뒤, 아래 Wrangler 절차로 자기 Cloudflare 계정에 배포한다.
 
 서로 전혀 다른 체험형 게임을 90분 안에 플레이→수정→재플레이하기 위한 pnpm 워크스페이스다. `요일 천재`는 서버 권위 실시간 게임의 완성 예제, `Handoff Lab`은 만들기→문서→인수인계→재구성의 턴제 예제, `우리 팀의 실험`은 한 상황→선택→공개로 항상 실행되는 시작점이다.
 
@@ -36,6 +36,8 @@ pnpm smoke -- https://내-배포-주소.workers.dev
 ```
 
 배포 뒤 `/`에서 요일 천재 혼자 연습, `/handoff`에서 Handoff Lab, `/workshop`에서 수정용 최소 게임을 바로 플레이한다. 행사 전 진행자는 `pnpm load -- <주소>`로 30명 리허설을 별도로 실행한다.
+
+사전 준비는 `pnpm check` → `pnpm deploy` → `pnpm smoke -- <배포 주소>`와 혼자 연습 완료까지다. 계정·권한·실시간 연결 문제는 [사전 배포 확인과 문제 해결](./docs/workshop/prerequisite.md)에서 확인한다.
 
 ## 개발
 
