@@ -2,7 +2,7 @@
 
 [![Deploy to Cloudflare](https://deploy.workers.cloudflare.com/button)](https://deploy.workers.cloudflare.com/?url=https://github.com/guersam/gng-hackathon-starter)
 
-> 게임을 먼저 실행해 보려면 위 Deploy 버튼을 사용한다. 코드를 수정할 참가자는 GitHub의 **Use this template**으로 자기 저장소를 만든 뒤, 아래 Wrangler 절차로 자기 Cloudflare 계정에 배포한다.
+> 게임을 먼저 실행해 보려면 위 Deploy 버튼을 사용한다. 이 버튼은 항상 원본 starter를 배포한다. 코드를 수정할 참가자는 GitHub의 **Use this template**으로 자기 저장소를 만든 뒤, 아래 Wrangler 절차로 자기 Cloudflare 계정에 배포한다. Deploy 버튼으로 자기 저장소를 배포하려면 링크의 `url=` 값을 자기 GitHub 저장소 주소로 변경한다.
 
 서로 전혀 다른 체험형 게임을 90분 안에 플레이→수정→재플레이하기 위한 pnpm 워크스페이스다. `요일 천재`는 서버 권위 실시간 게임 예제이고, `Handoff Lab`은 만들기→문서→인수인계→재구성의 턴제 예제다.
 
